@@ -56,7 +56,12 @@
          <h4 class="w3-center">Admin</h4>
          <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
+         <a href="about_a.html">
+  <button>
+    <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI
+  </button>
+</a>
+
          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Navigation</p>
         </div>
       </div>
@@ -140,7 +145,7 @@
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">Publicar Anuncio</h6>
-              <p contenteditable="true" class="w3-border w3-padding">Anuncio: text...</p>
+              <p contenteditable="true" class="w3-border w3-padding" ></p>
               <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
             </div>
           </div>
