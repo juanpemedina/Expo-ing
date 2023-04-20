@@ -78,22 +78,22 @@
          <div class="w3-row-padding">
          <br>
            <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
            </div>
            <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
            </div>
            <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
            </div>
            <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
            </div>
            <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
            </div>
            <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
            </div>
          </div>
           </div>
