@@ -39,7 +39,7 @@
           <div class="card-body">
             <h5 class="card-title">Nano</h5>
             <p class="card-text"> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a href="#" class="btn btn-primary">Más</a>
+            <a href="proyecto2.php" class="btn btn-primary">Más</a>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
           <div class="card-body">
             <h5 class="card-title">Bio</h5>
             <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a href="#" class="btn btn-primary">Más</a>
+            <a href="proyecto2.php" class="btn btn-primary">Más</a>
           </div>
         </div>
       </div>
@@ -59,7 +59,7 @@
           <div class="card-body">
             <h5 class="card-title">Nexus</h5>
             <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a href="#" class="btn btn-primary">Más</a>
+            <a href="proyecto2.php" class="btn btn-primary">Más</a>
           </div>
         </div>
       </div>
