@@ -11,6 +11,24 @@
 </head>
 
 <body>
+
+<section class="w3-threequarter w3-padding-large w3-right"> <!--NO FUNCIONA BIEN EL SIDEBAR-->
+        <!--DESKTOP NAVIGATION-->
+        <div class="w3-container w3-padding-large w3-border-bottom w3-hide-small">
+          
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="pagina_inicio_e.php" class="center">Pagina de Inicio</a>
+            <a href="registro.php" class="center">Registrar</a>
+            <a href="#" class="center">Mis Proyectos</a> <!--FALTA CONECTAR ESTE BOTON-->
+            <a href="#" class="center">Proyectos</a>
+            <a href="about.html" class="center">About</a>
+          </div>
+
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="center">&#9776; Menu</span>
+
+</section>
+
   <h2>Evento Actual</h2>
   <h1> Proyectos</h1>
   <section id="proyectos">
