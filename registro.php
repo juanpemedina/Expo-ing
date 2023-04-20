@@ -89,6 +89,24 @@
 </head>
 
 <body>
+
+<section class="w3-threequarter w3-padding-large w3-right"> <!--NO FUNCIONA BIEN EL SIDEBAR-->
+        <!--DESKTOP NAVIGATION-->
+        <div class="w3-container w3-padding-large w3-border-bottom w3-hide-small">
+          
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="pagina_inicio_e.php" class="center">Pagina de Inicio</a>
+            <a href="#" class="center">Registrar</a>
+            <a href="#" class="center">Mis Proyectos</a> <!--FALTA CONECTAR ESTE BOTON-->
+            <a href="proyectos1.php" class="center">Proyectos</a>
+            <a href="about.html" class="center">About</a>
+          </div>
+
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="center">&#9776; Menu</span>
+
+</section>
+
   <section class="form-registro">
     <form class="form">
       <h1>Registra los datos de tu proyecto aqui</h1>
@@ -121,7 +139,7 @@
 							   		$pdo = Database::connect();
 							   		$query = 'SELECT * FROM R_Nivel_Desarrollo';
 			 				   		foreach ($pdo->query($query) as $row) {
-		                        		if ($row['Id_Nivel']==$area)
+		                        		if ($row['Id_Nivel']==$nivel)
 		                        			echo "<option selected value='" . $row['Id_Nivel'] . "'>" . $row['Nivel'] . "</option>";
 		                        		else
 		                        			echo "<option value='" . $row['Id_Nivel'] . "'>" . $row['Nivel'] . "</option>";
@@ -135,14 +153,6 @@
 					</div>  
             
       <input type="text" class="input" placeholder="Inserta el link de tus archivos multimedia">
-
-      <select name="profesores" id="prof" class="input" placeholder="Area"> <!--FALTA BUSQUEDA PROFESOR-->
-        <option value="profesores">Selecciona tu a tu profesor</option>
-        <option value="prof1">profesor1</option>
-        <option value="prof2">profesor2</option>
-        <option value="prof3">profesor3</option>
-        <option value="prof4">profesor4</option>
-      </select>
 
       <select name="profesores" id="prof" class="input" placeholder="Area">
         <option value="Ufs">Selecciona tu Unidad de Formacion</option>
@@ -162,15 +172,46 @@
 					      		<span class="help-inline"><?php echo $ufError;?></span>
 						</div>
 					</div>
+					
+	      <select name="profesores" id="prof" class="input" placeholder="Area"> <!--FALTA BUSCAR PROFE SEGUN UF-->
+        <option value="profesores">Selecciona tu a tu profesor</option>
+        <?php
+							   		$pdo = Database::connect();
+							   		$query = 'SELECT * FROM R_Profesor NATURAL JOIN R_Profesor_Uf NATURAL JOIN R_Unidad_Formacion';
+			 				   		foreach ($pdo->query($query) as $row) {
+		                        		if ($row['Id_Uf']==$uf)
+		                        			echo "<option selected value='" . $row['Nomina'] . "'>" . $row['NombrePr'] . $row['ApellidoPr'] . "</option>";
+		                        		else
+		                        			echo "<option value='" . $row['Nomina'] . "'>" . $row['NombrePr'] . $row['ApellidoPr'] . "</option>";
+			   						}
+			   						Database::disconnect();
+			  					?>
+                            </select>
+					      	<?php if (($nomiError) != null) ?>
+					      		<span class="help-inline"><?php echo $nomiError;?></span>
+						</div>
+					</div> 
 
       <select name="alumnos" id="alumn" class="input" placeholder="Area"> <!--FALTA BUSQUEDA ESTUDIANTE-->
         <option value="Ufs">Selecciona a tu compañeros</option>
-        <option value="a0174352">Hector Kings</option>
-        <option value="a018471">Cesar war</option>
-        <option value="a0146194">JP</option>
-        <option value="a0147592">San Santos</option>
-      </select>
+        <?php
+							   		$pdo = Database::connect();
+							   		$query = 'SELECT * FROM R_Alumno';
+			 				   		foreach ($pdo->query($query) as $row) {
+		                        		if ($row['Matricula']==$matri)
+		                        			echo "<option selected value='" . $row['Matricula'] . "'>" . $row['NombreAl'] . $row['ApellidoAl'] . "</option>";
+		                        		else
+		                        			echo "<option value='" . $row['Matricula'] . "'>" . $row['NombreAl'] . $row['ApellidoAl'] . "</option>";
+			   						}
+			   						Database::disconnect();
+			  					?>
+                            </select>
+					      	<?php if (($matriError) != null) ?>
+					      		<span class="help-inline"><?php echo $matriError;?></span>
+						</div>
+					</div>
 
+<!--
       <div id="estudiantes">
         <div class="estudiante">
           <label for="estudiante1">Estudiante 1:</label>
@@ -179,6 +220,7 @@
       </div>
 
       <button id="add-estudiante">Agregar estudiante</button>
+-->
 
       <button>
         <div class="svg-wrapper-1">
