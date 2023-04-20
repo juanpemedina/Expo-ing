@@ -29,27 +29,27 @@ $nAd = mysqli_num_rows($queryAd);
 
 if ($nAl == 1)
 {
-	header("Location: pagina_inicio_e.html");
+	header("Location: pagina_inicio_e.php");
 }
 else if ($nPr == 1)
 {
 	$tipou = mysqli_fetch_column($queryPr,4);
 	if ($tipou == 1)
 	{
-		header("Location: caso_prof_and_juez.html");
+		header("Location: caso_prof_and_juez.php");
 	}
 	else
 	{
-		header("Location: pagina_inicio_p.html");
+		header("Location: pagina_inicio_p.php");
 	}
 }
 else if ($nJu == 1)
 {
-	header("Location: pagina_inicio_j.html");
+	header("Location: pagina_inicio_j.php");
 }
 else if ($nAd == 1)
 {
-	header("Location: pagina_inicio_a.html");
+	header("Location: pagina_inicio_a.php");
 }
 else
 {
