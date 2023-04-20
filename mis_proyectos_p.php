@@ -9,6 +9,25 @@
   <h1>Projects</h1>
 
   <div class="container">
+  
+   <?php
+								   	include 'database.php';
+								   	$pdo = Database::connect();
+								   	$sql = 'SELECT * FROM R_Proyecto natural join R_Edicion natural join R_Area_Estrategica natural join R_Unidad_Formacion natural join R_Nivel_Desarrollo ORDER BY Id_Proyecto';
+				 				   	foreach ($pdo->query($sql) as $row) {
+				 				   	echo '<div class="item" id=' .$row['Id_Proyecto'] . '>';
+								      	echo '<div class="text">';
+										echo '<h3>'. $row['NombrePy'] . '</h3>';
+										echo '<p>'. $row['Id_Proyecto'] . '</p>';
+									  	echo '<p>'. $row['Nivel'] . '</p>';
+								      	echo '</div>';
+								      	echo '<div class="button">View More</div>';
+								    	echo '</div>'; #SOLO IMPRIME 2 PROYECTOS DE LOS 8
+									
+								    }
+								   	Database::disconnect();
+				  				?>
+				  				
     <div class="item" id="1">
       <img src="https://www.enter.co/wp-content/uploads/2017/10/robotica-en-sofa-2017.jpg" alt="">
       <div class="text">
@@ -17,52 +36,6 @@
       </div>
       <div class="button">View More</div>
     </div>
-
-    <div class="item" id="2">
-      <img src="https://roboticajaen.files.wordpress.com/2015/01/rovera-2w.jpg" alt="">
-      <div class="text">
-        <h3>PROJECT 2</h4>
-          <p>Short Description</p>
-      </div>
-      <div class="button">View More</div>
-    </div>
-
-    <div class="item" id="3">
-      <img src="https://educacion2.com/wp-content/uploads/2017/06/robotica-2.jpg" alt="">
-      <div class="text">
-        <h3>PROJECT 3</h4>
-          <p>Short Description</p>
-      </div>
-      <div class="button">View More</div>
-    </div>
-
-    <div class="item" id="4">
-      <img src="http://blog.guadalinfo.es/wp-content/uploads/2017/04/robotica-montemayor-3.jpg" alt="">
-      <div class="text">
-        <h3>PROJECT 4</h4>
-          <p>Short Description</p>
-      </div>
-      <div class="button">View More</div>
-    </div>
-
-    <div class="item" id="5">
-      <img src="https://tecnoia.com/cheestik/proyecto-de-robotica-de-mano-robotico.jpg" alt="">
-      <div class="text">
-        <h3>PROJECT 5</h4>
-          <p>Short Description</p>
-      </div>
-      <div class="button">View More</div>
-    </div>
-
-    <div class="item" id="6">
-      <img src="https://programamos.es/web/wp-content/uploads/2014/07/coches.jpg" alt="">
-      <div class="text">
-        <h3>PROJECT 6</h4>
-          <p>Short Description</p>
-      </div>
-      <div class="button">View More</div>
-    </div>
-  </div>
 
   <!-- Modal -->
   <div id="preview" class="modal">
