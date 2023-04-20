@@ -70,11 +70,11 @@
 			$sql1 = "INSERT INTO R_Proyecto (Nomina, Id_Edicion, Id_Area, Id_Uf, Id_Nivel, NombrePy, Descripcion, Multimedia, Calif_Final, Autorizacion) values(?, 1, ?, ?, ?, ?, ?, ?, null, 0)";
 			$q1 = $pdo->prepare($sql1);
 			$q1->execute(array($nomi, $area, $uf, $nivel, $nomb, $desc, $mult));
-			$sql2 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) values(?, ?)"; //NO SÉ BIEN COMO HACER PARA QUE FUNCIONE
-			$q2 = $pdo->prepare($sql2);
-			$q2->execute(array($matri, $proye));
+			//$sql2 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) values(?, ?)"; //NO SÉ BIEN COMO HACER PARA QUE FUNCIONE
+			//$q2 = $pdo->prepare($sql2);
+			//$q2->execute(array($matri, $proye));
 			Database::disconnect();
-			header("Location: index.php");
+			header("Location: pagina_inicio_e.php");
 		}
 	}
 ?>
@@ -108,14 +108,30 @@
 </section>
 
   <section class="form-registro">
-    <form class="form">
+    <form class="form" action="registro.php" method="post">
       <h1>Registra los datos de tu proyecto aqui</h1>
-      <input type="text" class="input" placeholder="Nombre del proyecto">
-      <input type="text" class="input" placeholder="Descripcion">
       
-      <select name="Areas" id="Area_estrategica" class="input" placeholder="Area">
-        <option value="Selecciona">Selecciona tu Area Estrategica</option>
-        <?php
+      <div class="control-group <?php echo !empty($nombError)?'error':'';?>">
+					    <div class="controls">
+					      	<input name="nomb" type="text" class="input" placeholder="Nombre del Proyecto" value="<?php echo !empty($nomb)?$nomb:'';?>">
+					      	<?php if (($nombError != null)) ?>
+					      		<span class="help-inline"><?php echo $nombError;?></span>
+					    </div>
+					</div>
+
+      <div class="control-group <?php echo !empty($descError)?'error':'';?>">
+					    <div class="controls">
+					      	<input name="desc" type="text" class="input" placeholder="Descripcion" value="<?php echo !empty($desc)?$desc:'';?>">
+					      	<?php if (($descError != null)) ?>
+					      		<span class="help-inline"><?php echo $descError;?></span>
+					    </div>
+					</div>
+      
+      <div class="control-group <?php echo !empty($areaError)?'error':'';?>">
+				    	<div class="controls">
+	                       	<select name ="area" id="Area_Estrategica" class="input">
+	                       	<option value="">Selecciona un area estrategica</option>
+		                        <?php
 							   		$pdo = Database::connect();
 							   		$query = 'SELECT * FROM R_Area_Estrategica';
 			 				   		foreach ($pdo->query($query) as $row) {
@@ -131,11 +147,12 @@
 					      		<span class="help-inline"><?php echo $areaError;?></span>
 						</div>
 					</div>
-
-
-      <select name="Nivel" id="Nivel_desarrollo" class="input">
-        <option value="Selecciona">Selecciona tu Nivel de Desarrollo</option>
-      <?php
+    
+	<div class="control-group <?php echo !empty($nivelError)?'error':'';?>">
+				    	<div class="controls">
+	                       	<select name ="nivel" id="Nivel_Desarrollo" class="input">
+		                        <option value="">Selecciona un nivel de desarrollo</option>
+		                        <?php
 							   		$pdo = Database::connect();
 							   		$query = 'SELECT * FROM R_Nivel_Desarrollo';
 			 				   		foreach ($pdo->query($query) as $row) {
@@ -150,13 +167,21 @@
 					      	<?php if (($nivelError) != null) ?>
 					      		<span class="help-inline"><?php echo $nivelError;?></span>
 						</div>
-					</div>  
+					</div>
             
-      <input type="text" class="input" placeholder="Inserta el link de tus archivos multimedia">
+      <div class="control-group <?php echo !empty($multError)?'error':'';?>">
+					    <div class="controls">
+					      	<input name="mult" type="text" class="input" placeholder="Inserta el link de tus archivos multimedia" value="<?php echo !empty($mult)?$mult:'';?>">
+					      	<?php if (($multError != null)) ?>
+					      		<span class="help-inline"><?php echo $multError;?></span>
+					    </div>
+					</div>
 
-      <select name="profesores" id="prof" class="input" placeholder="Area">
-        <option value="Ufs">Selecciona tu Unidad de Formacion</option>
-        <?php
+        <div class="control-group <?php echo !empty($ufError)?'error':'';?>">
+				    	<div class="controls">
+	                       	<select name ="uf" id="Unidad_Formacion" class="input">
+		                        <option value="">Selecciona una UF</option>
+		                        <?php
 							   		$pdo = Database::connect();
 							   		$query = 'SELECT * FROM R_Unidad_Formacion';
 			 				   		foreach ($pdo->query($query) as $row) {
@@ -173,9 +198,11 @@
 						</div>
 					</div>
 					
-	      <select name="profesores" id="prof" class="input" placeholder="Area"> <!--FALTA BUSCAR PROFE SEGUN UF-->
-        <option value="profesores">Selecciona tu a tu profesor</option>
-        <?php
+	<div class="control-group <?php echo !empty($nomiError)?'error':'';?>"> <!--NO PUEDO HACER QUE SOLO SALGA EL PROFE DE LA UF-->
+				    	<div class="controls">
+	                       	<select name ="nomi" id="prof" class="input">
+		                        <option value="">Selecciona a tu profesor</option>
+		                        <?php
 							   		$pdo = Database::connect();
 							   		$query = 'SELECT * FROM R_Profesor NATURAL JOIN R_Profesor_Uf NATURAL JOIN R_Unidad_Formacion';
 			 				   		foreach ($pdo->query($query) as $row) {
@@ -190,11 +217,13 @@
 					      	<?php if (($nomiError) != null) ?>
 					      		<span class="help-inline"><?php echo $nomiError;?></span>
 						</div>
-					</div> 
+					</div>
 
-      <select name="alumnos" id="alumn" class="input" placeholder="Area"> <!--FALTA BUSQUEDA ESTUDIANTE-->
-        <option value="Ufs">Selecciona a tu compañeros</option>
-        <?php
+      <div class="control-group <?php echo !empty($matriError)?'error':'';?>"> <!--¿CÓMO METO LA Id_Proyecto DEL QUE APENAS VOY A CREAR A R_Alumno_Proyecto-->
+				    	<div class="controls">
+	                       	<select name ="matri" id="alum" class="input">
+		                        <option value="">Selecciona a los Integrantes</option>
+		                        <?php
 							   		$pdo = Database::connect();
 							   		$query = 'SELECT * FROM R_Alumno';
 			 				   		foreach ($pdo->query($query) as $row) {
@@ -232,13 +261,13 @@
                 fill="currentColor"></path>
             </svg>
           </div>
-        </div>
-        <span>Registrar Proyecto</span>
-      </button>
-
-
-
+          
+          <div class="form-actions">
+				<button type="nomit" class="btn btn-success">Agregar Proyecto</button>
+	</div>
+	
     </form>
+   
   </section>
 
 
