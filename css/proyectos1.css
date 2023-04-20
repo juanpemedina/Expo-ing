@@ -1,0 +1,18 @@
+h1{
+  text-align: center;
+  padding: 5px 15px;
+}
+h2{
+  text-align: center;
+  padding: 20px 30px;
+}
+#proyectos{
+  padding: 25px 5px;
+  text-align: center;
+}
+#cartas{
+  padding: 100px;
+}
+.proyectos-column{
+  padding: 3% 2%;
+}

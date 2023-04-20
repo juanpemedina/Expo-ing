@@ -1,0 +1,36 @@
+body {
+    font-family: "Montserrat";
+    text-align: center;
+}
+
+.about {
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    margin-top: 180px;
+    padding: 20px 30px;
+    color: black;
+    text-align: justify;
+}
+
+.about h1{
+    margin-bottom: 15px;
+    font-size: 35px;
+}
+
+.image{
+    position: absolute;
+    background-position: center;
+    top: 200px;
+    right: 15%;
+}
+
+.about-tablas h2{
+    margin-bottom: 25px;
+    margin-left: 5%;
+}
+
+.about-tablas table{
+    width: 70%;
+    margin: auto;
+}
