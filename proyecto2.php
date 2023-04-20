@@ -38,7 +38,7 @@
           <p>Nivel de desarrollo</p>
         </td>
         <td>
-          <button>Ver</button>
+          <a href="miproyecto.php" class="btn btn-primary">Ver</a>
         </td>
       </tr>
 
@@ -55,7 +55,7 @@
           <p>Nivel de desarrollo</p>
         </td>
         <td>
-          <button>Ver</button>
+          <a href="miproyecto.php" class="btn btn-primary">Ver</a>
         </td>
       </tr>
       <tr>
@@ -71,7 +71,7 @@
           <p>Nivel de desarrollo</p>
         </td>
         <td>
-          <button>Ver</button>
+          <a href="miproyecto.php" class="btn btn-primary">Ver</a>
         </td>
 
       </tr>
@@ -88,7 +88,7 @@
           <p>Nivel de desarrollo</p>
         </td>
         <td>
-          <button>Ver</button>
+          <a href="miproyecto.php" class="btn btn-primary">Ver</a>
         </td>
       </tr>
     </table>
