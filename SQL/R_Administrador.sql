@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `R_Administrador` (
   `Id_Admin` varchar(50) NOT NULL,
   `Contrasenia` varchar(50) DEFAULT NULL,
   `NombreAd` varchar(50) DEFAULT NULL,
-  `ApellidoAd` tinyint(1) DEFAULT NULL,
+  `ApellidoAd` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`Id_Admin`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
