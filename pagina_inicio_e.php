@@ -57,7 +57,7 @@
           
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="pagina_inicio_e.php" class="center">Pagina de Inicio</a>
+            <a href="#" class="center">Pagina de Inicio</a>
             <a href="registro.php" class="center">Registrar</a>
             <a href="#" class="center">Mis Proyectos</a> <!--FALTA CONECTAR ESTE BOTON-->
             <a href="proyectos1.php" class="center">Proyectos</a>
