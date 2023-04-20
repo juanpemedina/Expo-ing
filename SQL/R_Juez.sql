@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `R_Juez` (
   `Id_Juez` varchar(50) NOT NULL,
   `Contrasenia` varchar(50) DEFAULT NULL,
   `NombreJu` varchar(50) DEFAULT NULL,
-  `ApellidoJu` tinyint(1) DEFAULT NULL,
+  `ApellidoJu` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`Id_Juez`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
@@ -43,20 +43,6 @@ INSERT INTO `R_Juez` (`Id_Juez`, `Contrasenia`, `NombreJu`, `ApellidoJu`) VALUES
 ('Ju0000001', 'Ju2344', 'Hermenegildo', 'Regil'),
 ('Ju0000002', 'Ju3455', 'Amauri', 'Quillones');
 
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `auto2`
---
-ALTER TABLE `projectos`
-  ADD CONSTRAINT `projectos2_ibfk_1` FOREIGN KEY (`idarea`) REFERENCES `areas` (`idarea`);
-  
-
-
-
-  
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
