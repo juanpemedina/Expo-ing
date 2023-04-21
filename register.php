@@ -1,9 +1,11 @@
 <?PHP
 
+session.start();
+
 $dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "CMar 22! 74!";
-$dbname = "Pagina_Web";
+$dbuser = "alberto";
+$dbpass = "root";
+$dbname = "CMar 22! 74!";
 
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 if (!$conn)
