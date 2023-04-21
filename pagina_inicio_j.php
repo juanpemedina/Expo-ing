@@ -7,7 +7,7 @@ session.start();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profesor</title>
+    <title>Juez</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +47,7 @@ session.start();
         </div>
         <!--CV Upload BUTTON-->
         <div class="w3-container w3-padding-16">
-          <a href="mis_proyectos_p.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
+          <a href="mis_proyectos_j.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
             <i data-feather="folder" style="vertical-align: -0.35em;"></i>
             <span class="w3-margin-left download-text">Mis Proyectos</span>
           </a>
@@ -62,7 +62,7 @@ session.start();
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#" class="center">Pagina de Inicio</a>
-            <a href="mis_proyectos_p.php" class="center">Mis Proyectos</a>
+            <a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
             <a href="proyectos1.php" class="center">Proyectos</a>
             <a href="about.html" class="center">About</a>
           </div>
@@ -105,11 +105,11 @@ session.start();
                 </ul>
               </div>
               <div class="">
-                <h4>¡Atención Profesores!</h4>
-                <h5>Profesor</h5>
+                <h4>¡Atención Jueces!</h4>
+                <h5>Juez</h5>
                 <p>March 2023 - Present</p>
                 <ul class="w3-ul" style="font-weight: 500;">
-                  <li>El plazo para el registro de proyectos ha sido extendido hasta el próximo viernes</li>
+                  <li>El evento dara inicio a las 3:00 pm</li>
                 </ul>
               </div>
             </div>
