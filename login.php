@@ -1,5 +1,7 @@
 <?PHP
 
+session.start();
+
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "CMar 22! 74!";
