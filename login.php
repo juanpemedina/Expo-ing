@@ -16,6 +16,8 @@ if (!$conn)
 $mail = $_POST["correo"];
 $pass = $_POST["password"];
 
+$_SESSION["Usuario"] = $pass;
+
 
 
 
@@ -31,6 +33,7 @@ $nAd = mysqli_num_rows($queryAd);
 
 if ($nAl == 1)
 {
+	$_SESSION["TipoUsuario"] = 1;
 	header("Location: pagina_inicio_e.php");
 }
 else if ($nPr == 1)
@@ -42,15 +45,18 @@ else if ($nPr == 1)
 	}
 	else
 	{
+		$_SESSION["TipoUsuario"] = 2;
 		header("Location: pagina_inicio_p.php");
 	}
 }
 else if ($nJu == 1)
 {
+	$_SESSION["TipoUsuario"] = 3;
 	header("Location: pagina_inicio_j.php");
 }
 else if ($nAd == 1)
 {
+	$_SESSION["TipoUsuario"] = 4;
 	header("Location: pagina_inicio_a.php");
 }
 else
