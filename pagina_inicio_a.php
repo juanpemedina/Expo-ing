@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION["TipoUsuario"] = 4;
 ?>
 
 <!DOCTYPE html>
