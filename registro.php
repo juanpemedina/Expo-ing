@@ -1,5 +1,6 @@
 <?php
 
+session.start();
 
 	require 'database.php';
 
