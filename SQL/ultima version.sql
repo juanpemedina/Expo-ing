@@ -3,13 +3,19 @@
 CREATE TABLE R_Juez_Proyecto_Calif(
 	Id_Juez VARCHAR(50),
 	Id_Proyecto INT(11),
-	TipoUsuario VARCHAR(50),
 	Calificacion FLOAT(5) DEFAULT NULL,
 	Nomina VARCHAR(50),
 FOREIGN KEY (Id_Juez) REFERENCES R_Juez(Id_Juez) ON UPDATE CASCADE ON DELETE SET NULL,
 FOREIGN KEY (Id_Proyecto) REFERENCES R_Proyecto(Id_Proyecto) ON UPDATE CASCADE ON DELETE SET NULL,
 FOREIGN KEY (Nomina) REFERENCES R_Profesor(Nomina) ON UPDATE CASCADE ON DELETE SET NULL);
 
+INSERT INTO `R_Juez_Proyecto_Calif` (`Id_Juez`, `Id_Proyecto`, `Calificacion`, `Nomina`) VALUES
+('Ju0000000', 2, NULL, NULL),
+('Ju0000001', 3, NULL, NULL),
+('Ju0000002', 4, NULL, NULL),
+('Ju0000000', 5, NULL, NULL),
+('Ju0000001', 29, NULL, NULL),
+(NULL, 30, NULL, 'L012345');
 
 JUEZZ:
 
