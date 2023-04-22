@@ -16,7 +16,7 @@ if (!$conn)
 $mail = $_POST["correo"];
 $pass = $_POST["password"];
 
-$_SESSION["Usuario"] = $pass;
+$_SESSION["Usuario"] = $mail;
 
 
 
