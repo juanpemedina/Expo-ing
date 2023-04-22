@@ -42,9 +42,6 @@ $_SESSION["TipoUsuario"] = 3;
           <a class="icon-link w3-text-sand w3-hover-text-amber" href="#twitter" target="_blank">
              <i data-feather="twitter"></i>
           </a>
-          <a class="icon-link w3-text-sand w3-hover-text-amber" href="#linkedin" target="_blank">
-             <i data-feather="linkedin"></i>
-          </a>
         </div>
         <!--CV Upload BUTTON-->
         <div class="w3-container w3-padding-16">
