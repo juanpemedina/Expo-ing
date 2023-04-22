@@ -4,283 +4,158 @@ $_SESSION["TipoUsuario"] = 4;
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Admin Panel</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juez</title>
     <link rel="stylesheet" href="css/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-    html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Montserrat font-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/pagina_inicio.css" />
+    <script src="https://unpkg.com/feather-icons@4.28.0/dist/feather.min.js"></script>
+    <script src="JavaScript/menu.js"></script>
   </head>
-<body class="w3-theme-l5">
+  <body>   
+    <section>
+      <!-- MOBILE NAVIGATION -->
+      <div id="mobile-nav" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-sticky">
+        <a href="#about" class="w3-bar-item w3-button w3-center w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green" onclick="toggleNavigation()">ABOUT</a>
+        <a href="#resume" class="w3-bar-item w3-button w3-center w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green" onclick="toggleNavigation()">RESUME</a>
+        <a href="#contact" class="w3-bar-item w3-button w3-center w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green" onclick="toggleNavigation()">CONTACT</a>
+      </div>
 
-<!-- Navbar -->
-<div class="w3-top">
- <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Admin Panel</a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
-  <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-      <a href="#" class="w3-bar-item w3-button">One new request</a>
-      <a href="#" class="w3-bar-item w3-button">John Request access</a>
-      <a href="#" class="w3-bar-item w3-button">Jane Request access</a>
-    </div>
-  </div>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
-    <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
-  </a>
- </div>
-</div>
-
-<!-- Navbar on small screens -->
-<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
-</div>
-
-<!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
-  <!-- The Grid -->
-  <div class="w3-row">
-    <!-- Left Column -->
-    <div class="w3-col m3">
-      <!-- Profile -->
-      <div class="w3-card w3-round w3-white">
-        <div class="w3-container">
-         <h4 class="w3-center">Admin</h4>
-         <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-         <hr>
-         <a href="about_a.html">
-  <button>
-    <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI
-  </button>
-</a>
-
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Navigation</p>
+      <!-- SOCIAL SECTION -->
+      <section class="image-section w3-quarter w3-fixed w3-padding-small">
+        <!--IMAGE/AVATAR-->
+        <img src="images/avatar.png" class="w3-circle w3-border w3-border-sand" style="border-width: 3px !important;"/>
+        <!--SCIAL NETWORK BUTTONS-->
+        <div class="links w3-margin-top w3-padding-small">
+          <a class="icon-link w3-text-sand w3-hover-text-amber" href="#facebook" target="_blank">
+              <i data-feather="facebook"></i>
+          </a>
+          <a class="icon-link w3-text-sand w3-hover-text-amber" href="#instagram" target="_blank">
+             <i data-feather="instagram"></i>
+          </a>
+          <a class="icon-link w3-text-sand w3-hover-text-amber" href="#twitter" target="_blank">
+             <i data-feather="twitter"></i>
+          </a>
         </div>
-      </div>
-      <br>
-      
-      <!-- Accordion -->
-      <div class="w3-card w3-round">
-        <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Grupos</button>
-          <div id="Demo1" class="w3-hide w3-container">
-            <p>Some text..</p>
-          </div>
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Eventos</button>
-          <div id="Demo2" class="w3-hide w3-container">
-            <p>Some other text..</p>
-          </div>
-          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Colaboradores</button>
-          <div id="Demo3" class="w3-hide w3-container">
-         <div class="w3-row-padding">
-         <br>
-           <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
-           </div>
-           <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
-           </div>
-           <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
-           </div>
-           <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
-           </div>
-           <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
-           </div>
-           <div class="w3-half">
-             <img src="https://www.w3schools.com/w3images/avatar3.png" style="width:100%" class="w3-margin-bottom">
-           </div>
-         </div>
-          </div>
-        </div>      
-      </div>
-      <br>
-      
-      <!-- Interests --> 
-      <div class="w3-card w3-round w3-white w3-hide-small">
-        <div class="w3-container">
-          <p>Recientes</p>
-          <p>
-            <span class="w3-tag w3-small w3-theme-d5">Anuncios</span>
-            <span class="w3-tag w3-small w3-theme-d4">Actualizaciones</span>
-            <span class="w3-tag w3-small w3-theme-d3">Profesores</span>
-            <span class="w3-tag w3-small w3-theme-d2">Jueces</span>
-            <span class="w3-tag w3-small w3-theme-d1">Solicitudes</span>
-            <span class="w3-tag w3-small w3-theme">Organizacion</span>
-            <span class="w3-tag w3-small w3-theme-l1">Labels</span>
-            <span class="w3-tag w3-small w3-theme-l3">Design</span>
-            <span class="w3-tag w3-small w3-theme-l5">Fotos</span>
-          </p>
+        <!--CV Upload BUTTON-->
+        <div class="w3-container w3-padding-16">
+          <a href="mis_proyectos_j.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
+            <i data-feather="folder" style="vertical-align: -0.35em;"></i>
+            <span class="w3-margin-left download-text">Mis Proyectos</span>
+          </a>
         </div>
-      </div>
-      <br>
-      
-      <!-- Alert Box -->
-      <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
-          <i class="fa fa-remove"></i>
-        </span>
-        <p><strong>Hey!</strong></p>
-        <p>Recuerda que debes publlicar un Anuncio del evento hoy a las 5:00 pm</p>
-      </div>
-    
-    <!-- End Left Column -->
-    </div>
-    
-    <!-- Middle Column -->
-    <div class="w3-col m7">
-    
-      <div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">Publicar Anuncio</h6>
-              <p contenteditable="true" class="w3-border w3-padding" ></p>
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
+      </section>
+
+      <!--CV CONTENT SECTION-->
+      <section class="w3-threequarter w3-padding-large w3-right">
+        <!--DESKTOP NAVIGATION-->
+        <div class="w3-container w3-padding-large w3-border-bottom w3-hide-small">
+          
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#" class="center">Pagina de Inicio</a>
+            <a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
+            <a href="proyectos1.php" class="center">Proyectos</a>
+            <a href="about.html" class="center">About</a>
+            <a href="logout.php" class="center">Cerrar Sesión</a>
+          </div>
+
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="center">&#9776; Menu</span>
+
+          <a href="#about" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green w3-right w3-hide-small" style="border-width: 2px !important;" onclick="toggleNavigation()">ABOUT</a>
+          <a href="#faq" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green w3-right w3-hide-small" style="border-width: 2px !important;" onclick="toggleNavigation()">FAQ</a>
+          <a href="#anuncios" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-green w3-hover-text-green w3-right w3-hide-small" style="border-width: 2px !important;" onclick="toggleNavigation()">ANUNCIOS</a>
+        </div>
+        <div class="content-container w3-margin-top-2">
+          <!--HOME SECTION-->
+          <div id="home" class="home w3-container w3-margin-top-4 w3-cursive">
+            <h1>Bienvenido a Expo-Ingenierias</h2>
+            <h2>2023</h3>
+            <img src="images/expo.png">
+          </div>
+
+          <!--ABOUT SECTION-->
+          <div id="about" class="w3-container w3-margin-top-20-percent w3-cursive w3-large">
+            <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">ABOUT</h2>
+            <p class="w3-margin-top-2"> 
+              En la Escuela de Ingeniería y Cienciasdel Tec de Monterrey estamos convencidos 
+              de que el ingenio humano es lo que transforma al mundo.
+            </p>
+          </div>
+
+          <!--Anuncios-->
+          <div id="anuncios" class="w3-container w3-margin-top-20-percent w3-cursive">
+            <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">Anuncios</h2>
+            <div class="w3-container w3-margin-top-2 w3-cursive">
+
+              <!--Announcements-->
+              <div class="w3-row-padding">
+                <div class="w3-col m12">
+                  <div class="w3-card w3-round w3-white">
+                    <div class="w3-container w3-padding">
+                      <h4 class="w3-border-amber">Escribe aquí tus anuncios</h4>
+                      <form action="">
+                      <textarea id="w3review" size = "30" name="w3review" rows="4" cols="50"></textarea>
+                        <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i><b>Publicar anuncio</b></button> 
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">1 min</span>
-        <h4>A01566245</h4><br>
-        <hr class="w3-clear">
-        <p>Nuestro proyecto de electrónica se basa en el diseño, construcción y aplicación de dispositivos y sistemas electrónicos para 
-          cumplir un propósito específico. En general, los proyectos de electrónica involucran la selección y utilización de 
-          componentes electrónicos como resistencias, capacitores, diodos, transistores, microcontroladores, entre otros, 
-          para construir un circuito eléctrico que resuelva un problema o realice una función.</p>
-          <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-half">
-              <img src="https://i.blogs.es/dbc3c2/raspberry-pi-email-notifier/450_1000.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
-            </div>
-            <div class="w3-half">
-              <img src="https://viasatelital.com/proyectos_electronicos/images/proyecto-de-electronica.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
-          </div>
-        </div>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-eye"></i>  view</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-eye-slash"></i>  Hide</button> 
-      </div>
-      
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="https://www.w3schools.com/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">16 min</span>
-        <h4>A01255637</h4><br>
-        <hr class="w3-clear">
-        <p>Nuestro proyecto de electrónica se basa en el diseño, construcción y aplicación de dispositivos y sistemas electrónicos para 
-          cumplir un propósito específico. En general, los proyectos de electrónica involucran la selección y utilización de 
-          componentes electrónicos como resistencias, capacitores, diodos, transistores, microcontroladores, entre otros, 
-          para construir un circuito eléctrico que resuelva un problema o realice una función.</p>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-eye"></i>  View</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-eye-slash"></i>  Hide</button> 
-      </div>  
 
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="https://www.w3schools.com/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">32 min</span>
-        <h4>A01756267</h4><br>
-        <hr class="w3-clear">
-        <p>Nuestro proyecto de electrónica se basa en el diseño, construcción y aplicación de dispositivos y sistemas electrónicos para 
-          cumplir un propósito específico. En general, los proyectos de electrónica involucran la selección y utilización de 
-          componentes electrónicos como resistencias, capacitores, diodos, transistores, microcontroladores, entre otros, 
-          para construir un circuito eléctrico que resuelva un problema o realice una función.</p>
-        <img src="https://www.obsbusiness.school/sites/obsbusiness.school/files/images/proyectos-electronica.jpg" style="width:100%" class="w3-margin-bottom">
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-eye"></i>  View</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-eye-slash"></i>  Hide</button> 
-      </div> 
-      
-    <!-- End Middle Column -->
-    </div>
+          <!--FAQ-->
+          <div id="faq" class="w3-container w3-margin-top-20-percent w3-cursive">
+            <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">FAQ</h3>
+            <section class="faq-container">
     
-    <!-- Right Column -->
-    <div class="w3-col m2">
-      <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
-          <p>Upcoming Events:</p>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp-TXMTgvnxbE-ejIYVkKkUhDN2ZCFcDSRvQ&usqp=CAU" alt="Forest" style="width:100%;">
-          <p><strong>Expo Ingenierias</strong></p>
-          <p>Friday 15:00</p>
-          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
-        </div>
-      </div>
-      <br>
-      
-      <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
-          <p>Access Request</p>
-          <img src="https://www.w3schools.com/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-          <span>L01255675</span>
-          <div class="w3-row w3-opacity">
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-            </div>
-            <div class="w3-half">
-              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-            </div>
+              <div class="faq-one">
+                <h3 class="faq-page">¿Cómo registro mi proyecto?</h3>
+                <div class="faq-body">
+                  <p>El registro de proyecto se lleva a cabo en la parte de arriba de la pagina oficial, no podras estar registrado hasta que tu profesor autoricé el proyecto</p>
+                </div>
+              </div>
+              <hr class="hr-line">
+
+              <div class="faq-two">
+                <h3 class="faq-page">¿Donde veo los proyectos de la feria?</h3>
+                <div class="faq-body">
+                  <p>En la sección de Proyectos, ubicada a un lado de registrar proyecto</p>
+                </div>
+              </div>
+              <hr class="hr-line">
+
+              <div class="faq-three">
+                <h3 class="faq-page">¿Dónde veo mi lugar?</h3>
+                <div class="faq-body">
+                  <p>En la parte inferior podrás visualizar la ubicación de los proyectos, encuentra el nombre dle tuyo y acude a tu stand</p>
+                </div>
+              </div>
+            </section>
+            <script src="JavaScript/faq.js"></script>
           </div>
-        </div>
-      </div>
-      <br>
-      
-      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-        <p>ADS</p>
-      </div>
-      <br>
-      
-      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-        <p><i class="fa fa-bug w3-xxlarge"></i></p>
-      </div>
-      
-    <!-- End Right Column -->
-    </div>
-    
-  <!-- End Grid -->
-  </div>
-  
-<!-- End Page Container -->
-</div>
-<br>
-
-<script>
-// Accordion
-function myFunction(id) {
-  var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-    x.previousElementSibling.className += " w3-theme-d1";
-  } else { 
-    x.className = x.className.replace("w3-show", "");
-    x.previousElementSibling.className = 
-    x.previousElementSibling.className.replace(" w3-theme-d1", "");
-  }
-}
-
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
-</script>
-
-</body>
-</html> 
+      </section>      
+    </section>
+    <script>
+      // Function to toggle mobile navigation
+      function toggleNavigation() {
+        let nav = document.getElementById("mobile-nav");
+        if (nav.classList.contains('w3-show')) {
+          nav.classList.remove('w3-show');
+        } else { 
+          nav.classList.add('w3-show');
+        }
+      }
+    </script>
+    <script>
+      // Script to load feather icons
+      feather.replace()
+    </script>
+  </body>
+</html>
