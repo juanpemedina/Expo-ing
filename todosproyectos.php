@@ -21,7 +21,7 @@ session_start();
 
 <body>
 <section>
-  <h1>Proyectos Asignados</h1>
+  <h1>Proyectos Registrados</h1>
 
   <table>
     <thead>
