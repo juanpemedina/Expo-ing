@@ -1,0 +1,151 @@
+body {
+    font-family: "Montserrat";
+    text-align: center;
+}
+
+.autorizar {
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    margin-top: 180px;
+    padding: 20px 30px;
+    color: black;
+    text-align: justify;
+}
+
+.autorizar h1{
+    margin-bottom: 15px;
+    font-size: 35px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 20px;
+  border: 0.5px solid #ccc;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  margin-top: 12px;
+  background-color: rgb(23, 111, 211);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #006B9E;
+}
+
+*{
+	@include box-sizing(border-box);
+}
+
+body{
+	background-color: #ecf0f1;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 16px;
+	padding-top: 100px;
+	@include transition(padding-top .5s ease);
+}
+header{
+	width: 100%;
+	height: 100px;
+	background-color: #006B9E;
+	text-align: center;
+	position: relative;
+	position: fixed;
+	top: 0;
+	overflow: hidden;
+	@include transition(all .5s ease);
+	h1{
+		font-size: 42px;
+		color: #fff;
+		line-height: 230px;
+		text-transform: uppercase;
+		font-weight: 100;
+		@include transition(all .3s ease);
+	}
+	nav{
+		position: absolute;
+		bottom: 0;
+		height: 60px;
+		line-height: 60px;
+		width: 100%;
+		background-color: rgba(0,0,0,.1);
+		a{
+			color: #fff;
+			display: inline-block;
+			padding: 10px 15px;
+			line-height: 1;
+			text-decoration: none;
+       @include border-radius(2px);
+        &:hover{
+          @include box-shadow(0 0 0 1px #fff);
+        }
+		}
+	}
+}
+h2{
+	font-size: 34px;
+	text-transform: uppercase;
+	font-weight: 100;
+	line-height: 2;
+	color: #2c3e50;
+}
+p{
+	margin-bottom: 2rem;
+	line-height: 2;
+	color: #7f8c8d;
+}
+.input-container {
+  width: 320px;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: calc(50% + 5px);
+  transform: translateY(calc(-50% - 5px));
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  transition: .2s linear;
+  border: 2.5px solid black;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.input:focus {
+  outline: none;
+  border: 0.5px solid black;
+  box-shadow: -5px -5px 0px black;
+}
+
+.input-container:hover > .icon {
+  animation: anim 1s linear infinite;
+}
+
+@keyframes anim {
+  0%,
+  100% {
+    transform: translateY(calc(-50% - 5px)) scale(1);
+  }
+
+  50% {
+    transform: translateY(calc(-50% - 5px)) scale(1.1);
+  }
+}
