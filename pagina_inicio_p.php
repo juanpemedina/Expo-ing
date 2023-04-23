@@ -59,7 +59,7 @@ $_SESSION["TipoUsuario"] = 2;
           
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="pagina_inicio_p" class="center">Pagina de Inicio</a>
+            <a href="pagina_inicio_p.php" class="center">Pagina de Inicio</a>
             <a href="autorizar.php" class="center">Mis Proyectos</a>
             <a href="todosproyectos.php" class="center">Proyectos</a>
             <a href="about.html" class="center">About</a>
