@@ -45,7 +45,7 @@ $_SESSION["TipoUsuario"] = 2;
         </div>
         <!--CV Upload BUTTON-->
         <div class="w3-container w3-padding-16">
-          <a href="mis_proyectos_p.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
+          <a href="autorizar.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
             <i data-feather="folder" style="vertical-align: -0.35em;"></i>
             <span class="w3-margin-left download-text">Mis Proyectos</span>
           </a>
@@ -59,10 +59,11 @@ $_SESSION["TipoUsuario"] = 2;
           
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#" class="center">Pagina de Inicio</a>
-            <a href="mis_proyectos_p.php" class="center">Mis Proyectos</a>
-            <a href="proyectos1.php" class="center">Proyectos</a>
+            <a href="pagina_inicio_p" class="center">Pagina de Inicio</a>
+            <a href="autorizar.php" class="center">Mis Proyectos</a>
+            <a href="todosproyectos.php" class="center">Proyectos</a>
             <a href="about.html" class="center">About</a>
+            <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
           <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="center">&#9776; Menu</span>
@@ -118,9 +119,9 @@ $_SESSION["TipoUsuario"] = 2;
             <section class="faq-container">
     
               <div class="faq-one">
-                <h3 class="faq-page">¿Cómo registro mi proyecto?</h3>
+                <h3 class="faq-page">¿Cómo autorizo los proyectos a mi cargo?</h3>
                 <div class="faq-body">
-                  <p>El registro de proyecto se lleva a cabo en la parte de arriba de la pagina oficial, no podras estar registrado hasta que tu profesor autoricé el proyecto</p>
+                  <p>La autorizacion de proyectos se lleva a cabo en la parte de arriba de la pagina oficial, abajo de tu foto de perfil</p>
                 </div>
               </div>
               <hr class="hr-line">
