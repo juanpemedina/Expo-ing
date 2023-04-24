@@ -1,5 +1,7 @@
 <?php
-session_start();
+	session_start();
+	$id = $_SESSION["TipoUsuario"];
+	$user = $_SESSION["Usuario"];
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +24,27 @@ session_start();
           
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="pagina_inicio_e.php" class="center">Pagina de Inicio</a>
-            <a href="registro.php" class="center">Registrar</a>
-            <a href="#" class="center">Mis Proyectos</a> <!--FALTA CONECTAR ESTE BOTON-->
+            
+            <?php
+            if ($id == 1) {
+            	echo '<a href="pagina_inicio_e.php" class="center">Pagina de Inicio</a>';
+            	echo '<a href="registro.php" class="center">Registrar</a>';
+            	echo '"mis_proyectos_j.php" class="center">Mis Proyectos</a>';
+            }
+            else if ($id == 2) {
+            	echo '<a href="pagina_inicio_p.php" class="center">Pagina de Inicio</a>';
+            	echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>';
+            }
+            else if ($id == 3) {
+            	echo '<a href="pagina_inicio_j.php" class="center">Pagina de Inicio</a>';
+            	echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>';
+            }
+            else {
+            	echo '<a href="pagina_inicio_a.php" class="center">Pagina de Inicio</a>';
+            }
+            
+            ?>
+            
             <a href="#" class="center">Proyectos</a>
             <a href="about.html" class="center">About</a>
           </div>
@@ -36,38 +56,32 @@ session_start();
   <h2>Evento Actual</h2>
   <h1> Proyectos</h1>
   <section id="proyectos">
-    <div class="row">
-      <div class="proyectos-column col-lg-4 col-md-6" id="cartas">
-        <div class="card" style="width: 18rem;">
-          <img src="images/borrego.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Nano</h5>
-            <p class="card-text"> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a href="proyecto2.php" class="btn btn-primary">Más</a>
-          </div>
-        </div>
-      </div>
-      <div class="proyectos-column col-lg-4 col-md-6" id="cartas">
-        <div class="card" style="width: 18rem;">
-          <img src="images/borrego.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Bio</h5>
-            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a href="proyecto2.php" class="btn btn-primary">Más</a>
-          </div>
-        </div>
-      </div>
-      <div class="proyectos-column col-lg-4 col-md-6" id="cartas">
-        <div class="card" style="width: 18rem;">
-          <img src="images/borrego.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Nexus</h5>
-            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a href="proyecto2.php" class="btn btn-primary">Más</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  
+  <?php
+								   
+	
+								   	include 'database.php';			   
+								   	$pdo = Database::connect();
+								   	$sql = 'SELECT * FROM R_Area_Estrategica';
+								   	echo '<div class="row">';
+				 				   	foreach ($pdo->query($sql) as $row) {
+				 				   	echo '<div class="proyectos-column col-lg-4 col-md-6" id="cartas">';
+				 				   	echo '<div class="card" style="width: 18rem;">';
+									echo '<img src="images/borrego.png" class="card-img-top" alt="...">';
+								        echo '<div class="card-body">';
+								        echo '<h5 class="card-title">' . $row['NombreAe'] . '</h5>';
+								        echo '<p class="card-text"> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>';
+								        echo '<a class="btn btn-primary" href="todosproyectos.php?idA='.$row['Id_Area'].'">Más</a>';
+			    					   	echo '&nbsp;';
+								        echo '</div>';
+									echo '</div>';
+     						 			echo '</div>';	
+     						 		 			
+     								    }
+     								    	echo '</div>';
+								   	Database::disconnect();
+				  				?>
+ 
 
   </section>
 
