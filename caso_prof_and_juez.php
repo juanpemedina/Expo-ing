@@ -43,8 +43,8 @@ session_start();
   <section class="form-caso">
     <img src="images/expo.png" alt="logo" class="logo">
     <h2>¿Cómo desea entrar hoy?</h2>
-    <button onclick="window.location.href = 'pagina_inicio_p.php'" class="buttons">Docente </button> 
-    <button onclick="window.location.href = 'pagina_inicio_j.php'" class="buttons">Juez</button> 
+    <button onclick="window.location.href = 'caso_prof.php'" class="buttons">Docente </button> 
+    <button onclick="window.location.href = 'caso_juez.php'" class="buttons">Juez</button> 
   </section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
