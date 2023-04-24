@@ -30,15 +30,23 @@ $nJu = mysqli_num_rows($queryJu);
 
 if ($nAl == 1)
 {
-	echo "Un usuario ya usa este correo";
-}
+	echo'<script type="text/javascript">
+	alert("Ya existe un Ususario con ese Correo");
+	window.location.href="signup.html";
+	</script>';}
 else if ($nPr == 1)
 {
-	echo "Un usuario ya usa este correo";
+	echo'<script type="text/javascript">
+	alert("Ya existe un Ususario con ese Correo");
+	window.location.href="signup.html";
+	</script>';
 }
 else if ($nJu == 1)
 {
-	echo "Un usuario ya usa este correo";
+	echo'<script type="text/javascript">
+	alert("Ya existe un Ususario con ese Correo");
+	window.location.href="signup.html";
+	</script>';
 }
 else
 {
