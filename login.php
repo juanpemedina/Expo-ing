@@ -62,7 +62,11 @@ else if ($nAd == 1)
 else
 {
 	//header("Location: login.html");
-	echo "Usuario No Encontrado";
+	//header("Location: login.html");
+	echo'<script type="text/javascript">
+	alert("Usuario No Encontrado");
+	window.location.href="login.html";
+	</script>';
 }
 
 ?>
