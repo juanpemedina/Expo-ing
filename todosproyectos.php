@@ -8,14 +8,6 @@ session_start();
 	}
 	if ( $idA==null) {
 		header("Location: 404.html");
-	} else {
-		$pdo = Database::connect();
-		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = "SELECT * FROM R_Proyecto natural join R_Edicion natural join R_Area_Estrategica natural join R_Unidad_Formacion natural join R_Nivel_Desarrollo where Id_Area = ?";
-		$q = $pdo->prepare($sql);
-		$q->execute(array($idA));
-		$data = $q->fetch(PDO::FETCH_ASSOC);
-		Database::disconnect();
 	}
 
 ?>
@@ -68,8 +60,12 @@ session_start();
     <tbody>
         <?php
 								   	include 'database.php';
-								   	$pdo = Database::connect();
-								   	$sql = 'SELECT * FROM R_Proyecto natural join R_Edicion natural join R_Area_Estrategica natural join R_Unidad_Formacion natural join R_Nivel_Desarrollo ORDER BY Id_Proyecto';
+	    								$pdo = Database::connect();
+									$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+									$sql = "SELECT * FROM R_Proyecto natural join R_Edicion natural join R_Area_Estrategica natural join R_Unidad_Formacion natural join R_Nivel_Desarrollo where Id_Area = ?";
+									$q = $pdo->prepare($sql);
+									$q->execute(array($idA));
+									$data = $q->fetch(PDO::FETCH_ASSOC);
 				 				   	foreach ($pdo->query($sql) as $row) {
 											echo '<tr>';
                                         echo '<td>'. $row['Id_Proyecto'] . '</td>';
