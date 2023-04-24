@@ -1,5 +1,23 @@
 <?php
 session_start();
+
+    require 'database.php';
+	$idA = null;
+	if ( !empty($_GET['idA'])) {
+		$idA = $_REQUEST['idA'];
+	}
+	if ( $idA==null) {
+		header("Location: 404.html");
+	} else {
+		$pdo = Database::connect();
+		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$sql = "SELECT * FROM R_Proyecto natural join R_Edicion natural join R_Area_Estrategica natural join R_Unidad_Formacion natural join R_Nivel_Desarrollo where Id_Area = ?";
+		$q = $pdo->prepare($sql);
+		$q->execute(array($idA));
+		$data = $q->fetch(PDO::FETCH_ASSOC);
+		Database::disconnect();
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +39,7 @@ session_start();
 
 <body>
 <section>
-  <h1>Proyectos Registrados</h1>
+  <h1>Proyectos Asignados</h1>
 
   <table>
     <thead>
