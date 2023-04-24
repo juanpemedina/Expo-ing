@@ -1,6 +1,13 @@
 <?php
 session_start();
-$_SESSION["TipoUsuario"] = 1;
+
+$key = $_SESSION["TipoUsuario"];
+
+    require 'database.php';
+	if ( $key!=1) {
+		header("Location: 404.html");
+	}
+
 ?>
 
 <!DOCTYPE html>
