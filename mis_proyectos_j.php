@@ -1,5 +1,6 @@
 <?php
 session_start();
+$id = $_SESSION["TipoUsuario"];
 $user = $_SESSION["Usuario"];
 ?>
 
@@ -59,7 +60,23 @@ $user = $_SESSION["Usuario"];
   <?php
 								   	include 'database.php';
 								   	$pdo = Database::connect();
+								   	
+								   	if ($id == 1) {
+								   	$sql = 'SELECT * FROM R_Alumno NATURAL JOIN R_Alumno_Proyecto JOIN R_Proyecto NATURAL JOIN R_Area_Estrategica NATURAL JOIN R_Unidad_Formacion NATURAL JOIN R_Nivel_Desarrollo WHERE R_Alumno_Proyecto.Id_Proyecto = R_Proyecto.Id_Proyecto AND Matricula ="' . $user . '"';
+								   	}
+								   	else if ($id == 2) {
+								   	$sql = 'SELECT * FROM R_Profesor NATURAL JOIN R_Proyecto NATURAL JOIN R_Area_Estrategica NATURAL JOIN R_Unidad_Formacion NATURAL JOIN R_Nivel_Desarrollo WHERE Nomina ="' . $user . '"';
+								   	}
+								   	else if ($id == 3) {
 								   	$sql = 'SELECT * FROM R_Juez NATURAL JOIN R_Juez_Proyecto_Calif JOIN R_Proyecto NATURAL JOIN R_Area_Estrategica NATURAL JOIN R_Unidad_Formacion NATURAL JOIN R_Nivel_Desarrollo WHERE R_Juez_Proyecto_Calif.Id_Proyecto = R_Proyecto.Id_Proyecto AND Id_Juez ="' . $user . '"';
+								   	$rQ = $pdo->query($sql);
+								   	$nQ = $rQ -> rowCount();
+								   	if ($nQ == 0) {
+								   	$sql = 'SELECT * FROM R_Profesor NATURAL JOIN R_Proyecto NATURAL JOIN R_Area_Estrategica NATURAL JOIN R_Unidad_Formacion NATURAL JOIN R_Nivel_Desarrollo WHERE Nomina ="' . $user . '"';
+								   	}
+								   	}
+								   	
+								   	
 				 				   	foreach ($pdo->query($sql) as $row) {
 				 				   	echo '<tr>';
                                         				echo '<td>'. $row['Id_Proyecto'] . '</td>';
@@ -70,8 +87,16 @@ $user = $_SESSION["Usuario"];
 			                            echo '<td width=250>';
 			    					   	echo '<a class="btn" href="detalles.php?id='.$row['Id_Proyecto'].'">Detalles</a>';
 			    					   	echo '&nbsp;';
-			    					  	echo '<a class="btn btn-success" href="calificar-j.php?id='.$row['Id_Proyecto'].'">Calificar</a>';
+			    					   	
+			    					   	if ($id == 2) {
+			    					   	echo '<a class="btn btn-success" href="autorizar_py.php?id='.$row['Id_Proyecto'].'">Autorizar</a>';
 			    					   	echo '&nbsp;';
+			    					   	}
+			    					   	else if ($id == 3) {
+			    					  	echo '<a class="btn btn-success" href="calificar-j.php?id='.$row['Id_Proyecto'].'">Calificar</a>';
+			    					  	echo '&nbsp;';
+			    					  	}
+			    					  	
 			    					   	echo '</td>';
 										  echo '</tr>';
 								    }
