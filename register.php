@@ -3,9 +3,9 @@
 session_start();
 
 $dbhost = "localhost";
-$dbuser = "alberto";
-$dbpass = "root";
-$dbname = "CMar 22! 74!";
+$dbuser = "TC2005B_401_2";
+$dbpass = "S9BrLkLP*utl8UTl";
+$dbname = "TC2005B_401_2";
 
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 if (!$conn)
