@@ -37,22 +37,28 @@ $_SESSION["TipoUsuario"] = 4;
               <i data-feather="facebook"></i>
           </a>
           <a class="icon-link w3-text-sand w3-hover-text-amber" href="#instagram" target="_blank">
-             <i data-feather="instagram"></i>
+            <i data-feather="instagram"></i>
           </a>
           <a class="icon-link w3-text-sand w3-hover-text-amber" href="#twitter" target="_blank">
-             <i data-feather="twitter"></i>
+            <i data-feather="twitter"></i>
           </a>
         </div>
-        <!--CV Upload BUTTON-->
+        <!-- Upload BUTTON-->
         <div class="w3-container w3-padding-16">
           <a href="mis_proyectos_j.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
             <i data-feather="folder" style="vertical-align: -0.35em;"></i>
-            <span class="w3-margin-left download-text">Mis Proyectos</span>
+            <span class="w3-margin-left download-text">Ver Proyectos</span>
+          </a>
+        </div>
+        <div class="w3-container w3-padding-16">
+          <a href="mis_proyectos_j.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
+            <i data-feather="user" style="vertical-align: -0.35em;"></i>
+            <span class="w3-margin-left download-text">   Asignar Rol   </span>
           </a>
         </div>
       </section>
 
-      <!--CV CONTENT SECTION-->
+      <!-- CONTENT SECTION-->
       <section class="w3-threequarter w3-padding-large w3-right">
         <!--DESKTOP NAVIGATION-->
         <div class="w3-container w3-padding-large w3-border-bottom w3-hide-small">
