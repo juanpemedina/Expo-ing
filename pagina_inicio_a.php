@@ -45,7 +45,7 @@ $_SESSION["TipoUsuario"] = 4;
         </div>
         <!-- Upload BUTTON-->
         <div class="w3-container w3-padding-16">
-          <a href="mis_proyectos_j.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
+          <a href="proyectos_admin.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
             <i data-feather="folder" style="vertical-align: -0.35em;"></i>
             <span class="w3-margin-left download-text">Ver Proyectos</span>
           </a>
