@@ -67,7 +67,7 @@ echo $user;
 			                            echo '<td width=250>';
 			    					   	echo '<a class="btn" href="detalles_p.php?id='.$row['Id_Proyecto'].'">Detalles</a>';
 			    					   	echo '&nbsp;';
-			    					  	echo '<a class="btn btn-success" href="autorizar_py.php?id='.$row['Id_Proyecto'].'">Actualizar</a>';
+			    					  	echo '<a class="btn btn-success" href="autorizar_py.php?id='.$row['Id_Proyecto'].'">Autorizar</a>';
 			    					   	echo '&nbsp;';
 			    					   	echo '</td>';
 										  echo '</tr>';
