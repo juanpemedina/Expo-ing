@@ -13,8 +13,9 @@ $user = $_SESSION["Usuario"];
 		$nivelError = null;
 		$nomiError = null;
 		$matriError = null;
-
-
+		$matri2Error = null;
+		$matri3Error = null;
+		$matri4Error = null;
 	if ( !empty($_POST)) {
 
 		$nomb = $_POST['nomb'];
@@ -25,6 +26,9 @@ $user = $_SESSION["Usuario"];
 		$nivel = $_POST['nivel'];
 		$nomi = $_POST['nomi'];
 		$matri = $_POST['matri'];
+		$matri2 = $_POST['matri2'];
+		$matri3 = $_POST['matri3'];
+		$matri4 = $_POST['matri4'];
 		$proye = $_POST['proye'];
 
 
@@ -64,7 +68,20 @@ $user = $_SESSION["Usuario"];
 			$valid = false;
 		}
 
+		if (empty($matri2)) {
+			$matriError = 'Por favor selecciona a los integrantes';
+			$valid = false;
+		}
 
+		if (empty($matri3)) {
+			$matriError = 'Por favor selecciona a los integrantes';
+			$valid = false;
+		}
+
+		if (empty($matri4)) {
+			$matriError = 'Por favor selecciona a los integrantes';
+			$valid = false;
+		}
 		// insert data
 		if ($valid) {
 			$pdo = Database::connect();
@@ -75,6 +92,37 @@ $user = $_SESSION["Usuario"];
 
 			$sql2 = 'INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES ("' . $user . '", (SELECT MAX(Id_Proyecto) FROM R_Proyecto))';
 			$pdo->query($sql2);
+
+
+$sql11 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
+$q2 = $pdo->prepare($sql11);
+$q2->bindParam(':matri', $matri);
+$q2->execute();
+
+$sql12 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri2, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
+$q22 = $pdo->prepare($sql12);
+$q22->bindParam(':matri2', $matri2);
+$q22->execute();
+
+
+$sql13 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri3, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
+$q23 = $pdo->prepare($sql13);
+$q23->bindParam(':matri3', $matri3);
+$q23->execute();
+
+
+$sql14 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri4, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
+$q24 = $pdo->prepare($sql14);
+$q24->bindParam(':matri4', $matri4);
+$q24->execute();
+
+
+
+
+//$slq4 = 'INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES ("' . $matri . '", (SELECT MAX (Id_Proyecto) FROM R_Proyecto))';
+//			$pdo->query($sql4);
+
+
 
 //			$slq3 = 'INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES ("' . $matri . '", (SELECT MAX (Id_Proyecto) FROM R_Proyecto))';
 //			$pdo->query($sql3);
@@ -224,16 +272,54 @@ $user = $_SESSION["Usuario"];
 					      		<span class="help-inline"><?php echo $nomiError;?></span>
 						</div>
 					</div>
+<h1>LIDER DEL EQUIPO: </H1>
+<h2>
+<?php
+   $pdo = Database::connect();
+   $query = 'SELECT * FROM R_Alumno WHERE Matricula = "' . $user . '"';
+   $result = $pdo->query($query);
+
+   echo "<table>";
+   while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+       echo "<tr><td>" . $row['Matricula'] . "</td><td>" . $row['NombreAl'] . "</td><td>" . $row['ApellidoAl'] . "</td></tr>";
+   }
+   echo "</table>";
+
+   Database::disconnect();
+?>
+</h2>
+
 
       <div class="control-group <?php echo !empty($matriError)?'error':'';?>"> <!--¿CÓMO METO LA Id_Proyecto DEL QUE APENAS VOY A CREAR A R_Alumno_Proyecto-->
 				    	<div class="controls">
 	                       	<select name ="matri" id="alum" class="input">
-		                        <option value="">Selecciona a los Integrantes</option>
+		                        <option value="">Selecciona a los Integrantes de tu equipo</option>
 		                        <?php
 							   		$pdo = Database::connect();
-							   		$query = 'SELECT * FROM R_Alumno';
+							   		$query = 'SELECT * FROM R_Alumno WHERE Matricula != "' . $user . '"';
 			 				   		foreach ($pdo->query($query) as $row) {
 		                        		if ($row['Matricula']==$matri)
+		                        			echo "<option selected value='" . $row['Matricula'] . "'>" . $row['NombreAl'] . $row['ApellidoAl'] . "</option>";
+		                        		else
+		                        			echo "<option value='" . $row['Matricula'] . "'>" . $row['NombreAl'] . $row['ApellidoAl'] . "</option>";
+			   						}
+
+			   						Database::disconnect();
+			  					?>
+                            </select>
+					      	<?php if (($matriError) != null) ?>
+					      		<span class="help-inline"><?php echo $matriError;?></span>
+						</div>
+					</div>
+<div class="control-group <?php echo !empty($matriError)?'error':'';?>"> <!--¿CÓMO METO LA Id_Proyecto DEL QUE APENAS VOY A CREAR A R_Alumno_Proyecto-->
+				    	<div class="controls">
+	                       	<select name ="matri2" id="alum" class="input">
+		                        <option value="">Selecciona a los Integrantes de tu equipo</option>
+		                        <?php
+							   		$pdo = Database::connect();
+							   		$query = 'SELECT * FROM R_Alumno WHERE Matricula != "' . $user . '"';
+			 				   		foreach ($pdo->query($query) as $row) {
+		                        		if ($row['Matricula']==$matri2)
 		                        			echo "<option selected value='" . $row['Matricula'] . "'>" . $row['NombreAl'] . $row['ApellidoAl'] . "</option>";
 		                        		else
 		                        			echo "<option value='" . $row['Matricula'] . "'>" . $row['NombreAl'] . $row['ApellidoAl'] . "</option>";
@@ -245,6 +331,49 @@ $user = $_SESSION["Usuario"];
 					      		<span class="help-inline"><?php echo $matriError;?></span>
 						</div>
 					</div>
+<div class="control-group <?php echo !empty($matriError)?'error':'';?>"> <!--¿CÓMO METO LA Id_Proyecto DEL QUE APENAS VOY A CREAR A R_Alumno_Proyecto-->
+				    	<div class="controls">
+	                       	<select name ="matri3" id="alum" class="input">
+		                        <option value="">Selecciona a los Integrantes de tu equipo</option>
+		                        <?php
+							   		$pdo = Database::connect();
+							   		$query = 'SELECT * FROM R_Alumno WHERE Matricula != "' . $user . '"';
+			 				   		foreach ($pdo->query($query) as $row) {
+		                        		if ($row['Matricula']==$matri3)
+		                        			echo "<option selected value='" . $row['Matricula'] . "'>" . $row['NombreAl'] . $row['ApellidoAl'] . "</option>";
+		                        		else
+		                        			echo "<option value='" . $row['Matricula'] . "'>" . $row['NombreAl'] . $row['ApellidoAl'] . "</option>";
+			   						}
+			   						Database::disconnect();
+			  					?>
+                            </select>
+					      	<?php if (($matriError) != null) ?>
+					      		<span class="help-inline"><?php echo $matriError;?></span>
+						</div>
+					</div><div class="control-group <?php echo !empty($matriError)?'error':'';?>"> <!--¿CÓMO METO LA Id_Proyecto DEL QUE APENAS VOY A CREAR A R_Alumno_Proyecto-->
+				    	<div class="controls">
+	                       	<select name ="matri4" id="alum" class="input">
+		                        <option value="">Selecciona a los Integrantes de tu equipo</option>
+		                        <?php
+							   		$pdo = Database::connect();
+							   		$query = 'SELECT * FROM R_Alumno WHERE Matricula != "' . $user . '"';
+			 				   		foreach ($pdo->query($query) as $row) {
+		                        		if ($row['Matricula']==$matri4)
+		                        			echo "<option selected value='" . $row['Matricula'] . "'>" . $row['NombreAl'] . $row['ApellidoAl'] . "</option>";
+		                        		else
+		                        			echo "<option value='" . $row['Matricula'] . "'>" . $row['NombreAl'] . $row['ApellidoAl'] . "</option>";
+			   						}
+			   						Database::disconnect();
+			  					?>
+                            </select>
+					      	<?php if (($matriError) != null) ?>
+					      		<span class="help-inline"><?php echo $matriError;?></span>
+						</div>
+					</div>
+
+
+
+
           <div class="form-actions">
 				<button type="nomit" class="btn btn-success">Agregar Proyecto</button>
 	</div>
