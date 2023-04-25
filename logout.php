@@ -5,4 +5,4 @@ echo "Sesión Cerrada";
 ?>
 
 <br>
-<a href="login.html" class="center">Regresar</a>
+<a href="index.html" class="center">Regresar</a>
