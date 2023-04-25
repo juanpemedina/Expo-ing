@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+$user = $_SESSION["Usuario"];
 
 	require 'database.php';
 
@@ -12,7 +13,7 @@ session_start();
 		$nivelError = null;
 		$nomiError = null;
 		$matriError = null;
-		
+
 
 	if ( !empty($_POST)) {
 
@@ -71,9 +72,13 @@ session_start();
 			$sql1 = "INSERT INTO R_Proyecto (Nomina, Id_Edicion, Id_Area, Id_Uf, Id_Nivel, NombrePy, Descripcion, Multimedia, Calif_Final, Autorizacion) values(?, 1, ?, ?, ?, ?, ?, ?, null, 0)";
 			$q1 = $pdo->prepare($sql1);
 			$q1->execute(array($nomi, $area, $uf, $nivel, $nomb, $desc, $mult));
-			//$sql2 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) values(?, ?)"; //NO SÉ BIEN COMO HACER PARA QUE FUNCIONE
-			//$q2 = $pdo->prepare($sql2);
-			//$q2->execute(array($matri, $proye));
+
+			$sql2 = 'INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES ("' . $user . '", (SELECT MAX(Id_Proyecto) FROM R_Proyecto))';
+			$pdo->query($sql2);
+
+//			$slq3 = 'INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES ("' . $matri . '", (SELECT MAX (Id_Proyecto) FROM R_Proyecto))';
+//			$pdo->query($sql3);
+
 			Database::disconnect();
 			header("Location: pagina_inicio_e.php");
 		}
@@ -94,7 +99,7 @@ session_start();
 <section class="w3-threequarter w3-padding-large w3-right"> <!--NO FUNCIONA BIEN EL SIDEBAR-->
         <!--DESKTOP NAVIGATION-->
         <div class="w3-container w3-padding-large w3-border-bottom w3-hide-small">
-          
+
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="pagina_inicio_e.php" class="center">Pagina de Inicio</a>
@@ -111,7 +116,7 @@ session_start();
   <section class="form-registro">
     <form class="form" action="registro.php" method="post">
       <h1>Registra los datos de tu proyecto aqui</h1>
-      
+
       <div class="control-group <?php echo !empty($nombError)?'error':'';?>">
 					    <div class="controls">
 					      	<input name="nomb" type="text" class="input" placeholder="Nombre del Proyecto" value="<?php echo !empty($nomb)?$nomb:'';?>">
@@ -127,7 +132,7 @@ session_start();
 					      		<span class="help-inline"><?php echo $descError;?></span>
 					    </div>
 					</div>
-      
+
       <div class="control-group <?php echo !empty($areaError)?'error':'';?>">
 				    	<div class="controls">
 	                       	<select name ="area" id="Area_Estrategica" class="input">
@@ -148,7 +153,7 @@ session_start();
 					      		<span class="help-inline"><?php echo $areaError;?></span>
 						</div>
 					</div>
-    
+
 	<div class="control-group <?php echo !empty($nivelError)?'error':'';?>">
 				    	<div class="controls">
 	                       	<select name ="nivel" id="Nivel_Desarrollo" class="input">
@@ -169,7 +174,7 @@ session_start();
 					      		<span class="help-inline"><?php echo $nivelError;?></span>
 						</div>
 					</div>
-            
+
       <div class="control-group <?php echo !empty($multError)?'error':'';?>">
 					    <div class="controls">
 					      	<input name="mult" type="text" class="input" placeholder="Inserta el link de tus archivos multimedia" value="<?php echo !empty($mult)?$mult:'';?>">
@@ -198,7 +203,7 @@ session_start();
 					      		<span class="help-inline"><?php echo $ufError;?></span>
 						</div>
 					</div>
-					
+
 	<div class="control-group <?php echo !empty($nomiError)?'error':'';?>"> <!--NO PUEDO HACER QUE SOLO SALGA EL PROFE DE LA UF-->
 				    	<div class="controls">
 	                       	<select name ="nomi" id="prof" class="input">
@@ -240,35 +245,12 @@ session_start();
 					      		<span class="help-inline"><?php echo $matriError;?></span>
 						</div>
 					</div>
-
-<!--
-      <div id="estudiantes">
-        <div class="estudiante">
-          <label for="estudiante1">Estudiante 1:</label>
-          <input type="text" id="estudiante1" name="estudiante1">
-        </div>
-      </div>
-
-      <button id="add-estudiante">Agregar estudiante</button>
--->
-
-      <button>
-        <div class="svg-wrapper-1">
-          <div class="svg-wrapper">
-            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 0h24v24H0z" fill="none"></path>
-              <path
-                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                fill="currentColor"></path>
-            </svg>
-          </div>
-          
           <div class="form-actions">
 				<button type="nomit" class="btn btn-success">Agregar Proyecto</button>
 	</div>
-	
+
     </form>
-   
+
   </section>
 
 
