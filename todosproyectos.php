@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-    require 'database.php';
 	$idA = null;
 	if ( !empty($_GET['idA'])) {
 		$idA = $_REQUEST['idA'];
@@ -61,11 +60,7 @@ session_start();
         <?php
 								   	include 'database.php';
 	    								$pdo = Database::connect();
-									$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-									$sql = "SELECT * FROM R_Proyecto natural join R_Edicion natural join R_Area_Estrategica natural join R_Unidad_Formacion natural join R_Nivel_Desarrollo where Id_Area = ?";
-									$q = $pdo->prepare($sql);
-									$q->execute(array($idA));
-									$data = $q->fetch(PDO::FETCH_ASSOC);
+									$sql = 'SELECT * FROM R_Proyecto natural join R_Edicion natural join R_Area_Estrategica natural join R_Unidad_Formacion natural join R_Nivel_Desarrollo where Id_Area = ' . $idA . ' AND Autorizacion = 1';
 				 				   	foreach ($pdo->query($sql) as $row) {
 											echo '<tr>';
                                         echo '<td>'. $row['Id_Proyecto'] . '</td>';
