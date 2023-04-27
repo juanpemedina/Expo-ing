@@ -12,10 +12,33 @@ $user = $_SESSION["Usuario"];
 		$ufError = null;
 		$nivelError = null;
 		$nomiError = null;
-		$matriError = null;
-		$matri2Error = null;
-		$matri3Error = null;
-		$matri4Error = null;
+//		$matriError = null;
+//		$matri2Error = null;
+//		$matri3Error = null;
+//		$matri4Error = null;
+
+/*
+		$matri 	= $_POST['matri'];
+		$matri2 = $_POST['matri2'];
+		$matri3 = $_POST['matri3'];
+		$matri4 = $_POST['matri4'];
+*/
+if (isset($_POST['matri'])) {
+    $matri = $_POST['matri'];
+}
+
+if (isset($_POST['matri2'])) {
+    $matri2 = $_POST['matri2'];
+}
+
+if (isset($_POST['matri3'])) {
+    $matri3 = $_POST['matri3'];
+}
+
+if (isset($_POST['matri4'])) {
+    $matri4 = $_POST['matri4'];
+}
+
 	if ( !empty($_POST)) {
 
 		$nomb = $_POST['nomb'];
@@ -25,10 +48,7 @@ $user = $_SESSION["Usuario"];
 		$uf = $_POST['uf'];
 		$nivel = $_POST['nivel'];
 		$nomi = $_POST['nomi'];
-		$matri = $_POST['matri'];
-		$matri2 = $_POST['matri2'];
-		$matri3 = $_POST['matri3'];
-		$matri4 = $_POST['matri4'];
+
 		$proye = $_POST['proye'];
 
 
@@ -63,26 +83,12 @@ $user = $_SESSION["Usuario"];
 			$nomiError = 'Por favor selecciona a tu profesor';
 			$valid = false;
 		}
-		if (empty($matri)) {
-			$matriError = 'Por favor selecciona a los integrantes';
-			$valid = false;
-		}
 
-		if (empty($matri2)) {
-			$matriError = 'Por favor selecciona a los integrantes';
-			$valid = false;
-		}
 
-		if (empty($matri3)) {
-			$matriError = 'Por favor selecciona a los integrantes';
-			$valid = false;
-		}
-
-		if (empty($matri4)) {
-			$matriError = 'Por favor selecciona a los integrantes';
-			$valid = false;
-		}
 		// insert data
+$matriculas = array_filter([$matri, $matri2, $matri3, $matri4]);
+
+
 		if ($valid) {
 			$pdo = Database::connect();
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -93,7 +99,13 @@ $user = $_SESSION["Usuario"];
 			$sql2 = 'INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES ("' . $user . '", (SELECT MAX(Id_Proyecto) FROM R_Proyecto))';
 			$pdo->query($sql2);
 
-
+		foreach ($matriculas as $matricula) {
+        if (!empty($matricula)) {
+            $sql = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (?, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
+            $q = $pdo->prepare($sql);
+            $q->execute([$matricula]);
+        }
+/*
 $sql11 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
 $q2 = $pdo->prepare($sql11);
 $q2->bindParam(':matri', $matri);
@@ -116,6 +128,35 @@ $q24 = $pdo->prepare($sql14);
 $q24->bindParam(':matri4', $matri4);
 $q24->execute();
 
+*/
+
+//if ($matri !== "Selecciona a los Integrantes de tu equipo") {
+//    $sql11 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
+//    $q2 = $pdo->prepare($sql11);
+//    $q2->bindParam(':matri', $matri);
+//    $q2->execute();
+//}
+
+//if ($matri2 !== "Selecciona a los Integrantes de tu equipo") {
+//    $sql12 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri2, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
+//    $q22 = $pdo->prepare($sql12);
+//    $q22->bindParam(':matri2', $matri2);
+//    $q22->execute();
+//}
+
+//if ($matri3 !== "Selecciona a los Integrantes de tu equipo") {
+//    $sql13 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri3, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
+//    $q23 = $pdo->prepare($sql13);
+//    $q23->bindParam(':matri3', $matri3);
+//    $q23->execute();
+//}
+
+//if ($matri4 !== "Selecciona a los Integrantes de tu equipo") {
+//    $sql14 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri4, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
+//    $q24 = $pdo->prepare($sql14);
+//    $q24->bindParam(':matri4', $matri4);
+//    $q24->execute();
+//}
 
 
 
@@ -126,13 +167,12 @@ $q24->execute();
 
 //			$slq3 = 'INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES ("' . $matri . '", (SELECT MAX (Id_Proyecto) FROM R_Proyecto))';
 //			$pdo->query($sql3);
-
+}
 			Database::disconnect();
 			header("Location: pagina_inicio_e.php");
 		}
-	}
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -327,7 +367,7 @@ $q24->execute();
 			   						Database::disconnect();
 			  					?>
                             </select>
-					      	<?php if (($matriError) != null) ?>
+					      	<?php if (($matri2Error) != null) ?>
 					      		<span class="help-inline"><?php echo $matriError;?></span>
 						</div>
 					</div>
@@ -347,7 +387,7 @@ $q24->execute();
 			   						Database::disconnect();
 			  					?>
                             </select>
-					      	<?php if (($matriError) != null) ?>
+					      	<?php if (($matri3Error) != null) ?>
 					      		<span class="help-inline"><?php echo $matriError;?></span>
 						</div>
 					</div><div class="control-group <?php echo !empty($matriError)?'error':'';?>"> <!--¿CÓMO METO LA Id_Proyecto DEL QUE APENAS VOY A CREAR A R_Alumno_Proyecto-->
@@ -366,7 +406,7 @@ $q24->execute();
 			   						Database::disconnect();
 			  					?>
                             </select>
-					      	<?php if (($matriError) != null) ?>
+					      	<?php if (($matri4Error) != null) ?>
 					      		<span class="help-inline"><?php echo $matriError;?></span>
 						</div>
 					</div>
@@ -384,42 +424,5 @@ $q24->execute();
 
 
 </body>
-
-<script>
-  // Obtener los elementos del DOM
-  var estudiantesContainer = document.getElementById("estudiantes");
-  var addEstudianteBtn = document.getElementById("add-estudiante");
-
-  // Contador para llevar la cuenta de los estudiantes
-  var contadorEstudiantes = 1;
-
-  // Función para agregar un nuevo estudiante
-  function agregarEstudiante() {
-    contadorEstudiantes++;
-
-    // Crear el nuevo elemento HTML para el estudiante
-    var nuevoEstudiante = document.createElement("div");
-    nuevoEstudiante.classList.add("estudiante");
-
-    var label = document.createElement("label");
-    label.htmlFor = "estudiante" + contadorEstudiantes;
-    label.innerHTML = "Estudiante " + contadorEstudiantes + ":";
-
-    var input = document.createElement("input");
-    input.type = "text";
-    input.id = "estudiante" + contadorEstudiantes;
-    input.name = "estudiante" + contadorEstudiantes;
-
-    nuevoEstudiante.appendChild(label);
-    nuevoEstudiante.appendChild(input);
-
-    // Agregar el nuevo elemento al contenedor de estudiantes
-    estudiantesContainer.appendChild(nuevoEstudiante);
-  }
-
-  // Agregar un evento click al botón "Agregar estudiante"
-  addEstudianteBtn.addEventListener("click", agregarEstudiante);
-
-</script>
 
 </html>
