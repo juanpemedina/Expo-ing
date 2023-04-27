@@ -16,7 +16,7 @@
 				<div class="row">
 					<p>
 						<a href="create_proyectos_a.php" class="btn btn-success" role="button">Registrar Proyecto</a>
-						<a href="#" class="btn btn-info" role="button">Asignar Roles</a>
+						<a href="asignar_rol_admin_e.php" class="btn btn-primary" role="button">Asignar Roles</a>
 						<a href="pagina_inicio_a.php" role="button" class="btn btn-lg" style = "position:relative; left:515px;" >Regresar a página de inicio</a>
 									
 					</p>

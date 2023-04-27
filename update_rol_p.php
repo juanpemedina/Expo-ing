@@ -1,0 +1,234 @@
+<?php
+
+	require 'database.php';
+
+	$id = null;
+	if ( !empty($_GET['id'])) {
+		$id = $_REQUEST['id'];
+	}
+
+	if ( $id==null ) {
+		header("Location: index.php");
+	}
+
+	if ( !empty($_POST)) {
+		// keep track validation errors
+		$mailError   = null;
+		$nombError = null;
+		$apellError = null;
+		$contError = null;
+        $rolError = null;
+		// $areaError = null;
+		// $ufError = null;
+		// $nivelError = null;
+		// $nomiError = null;
+
+		// keep track post values
+		$mail   = $_POST['mail'];
+		$nomb = $_POST['nomb'];
+		$apell = $_POST['apell'];
+		$cont = $_POST['cont'];
+		$arol = $_POST['arol'];
+
+        // $rol = $_POST['rol'];
+
+		// $area = $_POST['area'];
+		// $uf = $_POST['uf'];
+		// $nivel = $_POST['nivel'];
+		// $nomi = $_POST['nomi'];
+		
+		/// validate input
+		$valid = true;
+
+		if (empty($nomb)) {
+			$nombError = 'Por favor ingresa un nombre';
+			$valid = false;
+		}
+		if (empty($apell)) {
+			$apellError = 'Por favor ingresa un apellido';
+			$valid = false;
+		}
+		if (empty($cont)) {
+			$contError = 'Por favor ingrese una contraseña';
+			$valid = false;
+		}
+		// if (empty($rol)) {
+		//  	$rolError = 'Por favor selecciona un rol';
+		//     $valid = false;
+		// }
+		// if (empty($uf)) {
+		// 	$ufError = 'Por favor selecciona una unidad de formacion';
+		// 	$valid = false;
+		// }
+		// if (empty($nivel)) {
+		// 	$nivelError = 'Por favor selecciona un nivel de desarrollo';
+		// 	$valid = false;
+		// }
+		// if (empty($nomi)) {
+		// 	$nomiError = 'Por favor selecciona a tu profesor';
+		// 	$valid = false;
+		// }
+
+		// update data
+		// if ($valid) {
+		// 	$pdo = Database::connect();
+		// 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		// 	$sql = 'UPDATE R_Profesor  set Nomina =?, Contrasenia =?, NombrePr =?, ApellidoPr =? WHERE Nomina = "' . $mail . '"';
+		// 	$q = $pdo->prepare($sql);
+		// 	// $q->execute(array($id, $nomi, $area, $uf, $nivel, $nomb, $desc, $mult, $id));
+        //     $q->execute(array($mail, $cont, $nomb, $apell));
+		// 	Database::disconnect();
+		// 	header("Location: asignar_rol_admin_p.php");
+		// }
+        if ($valid) {
+            $pdo = Database::connect();
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			if ($arol==1){
+				$sql1 = "INSERT INTO R_Alumno(Matricula, contrasenia, NombreAl, ApellidoAl) values(?, ?, ?, ?)";
+				$q1 = $pdo->prepare($sql1);
+				$q1->execute(array($mail, $cont, $nomb, $apell));
+
+				$sql2 = "DELETE FROM R_Profesor WHERE Nomina = ?";
+				$q2 = $pdo->prepare($sql2);
+				$q2->execute(array($id));
+			}
+			else if ($arol==2){
+				$sql = 'UPDATE R_Profesor SET Nomina=?, Contrasenia=?, NombrePr=?, ApellidoPr=?, Es_Juez=? WHERE Nomina = ?';
+            	$q = $pdo->prepare($sql);
+            	$q->execute(array($mail, $cont, $nomb, $apell, 0, $mail));
+			}
+			else if ($arol==3){
+				$sql1 = "INSERT INTO R_Juez(Id_Juez, contrasenia, NombreJu, ApellidoJu) values(?, ?, ?, ?)";
+				$q1 = $pdo->prepare($sql1);
+				$q1->execute(array($mail, $cont, $nomb, $apell));
+
+				$sql2 = "DELETE FROM R_Profesor WHERE Nomina = ?";
+				$q2 = $pdo->prepare($sql2);
+				$q2->execute(array($id));
+			}
+			else if ($arol==4){
+				$sql = 'UPDATE R_Profesor SET Nomina=?, Contrasenia=?, NombrePr=?, ApellidoPr=?, Es_Juez=? WHERE Nomina = ?';
+            	$q = $pdo->prepare($sql);
+            	$q->execute(array($mail, $cont, $nomb, $apell, 1, $mail));
+			}
+
+            Database::disconnect();
+            header("Location: asignar_rol_admin_p.php");
+          }
+          
+	}
+	else {
+		$pdo = Database::connect();
+		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$sql = "SELECT * FROM R_Profesor where Nomina = ?";
+		$q = $pdo->prepare($sql);
+		$q->execute(array($id));
+		$data = $q->fetch(PDO::FETCH_ASSOC);
+        $mail = $data['Nomina'];
+        $cont = $data['Contrasenia'];
+        $nomb = $data['NombrePr'];
+        $apell = $data['ApellidoPr'];
+        $rol = $data['Es_Juez'];
+
+		// $id 	= $data['Id_Proyecto'];
+		// $nomi = $data['Nomina'];
+		// $area 	= $data['Id_Area'];
+		// $uf 	= $data['Id_Uf'];
+		// $nivel 	= $data['Id_Nivel'];
+		// $nomb 	= $data['NombrePy'];
+		// $desc = $data['Descripcion'];
+		// $mult = $data['Multimedia'];
+		Database::disconnect();
+	}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta 	charset="utf-8">
+	    <link   href=	"css/bootstrap.min.css" rel="stylesheet">
+	    <script src=	"js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+    	<div class="container">
+    		<div class="span10 offset1">
+    			<div class="row">
+		    		<h3>Actualizar Datos del Usuario/Docente</h3>
+		    	</div>
+
+	    			<form class="form-horizontal" action="update_rol_p.php?id=<?php echo $mail;?>" method="post">
+						
+					<div class="control-group">
+							<label class="control-label">Rol de Usuario</label>
+							<div class="controls">
+								<select name ="arol">
+									<option value="">Selecciona un rol</option>
+										<option name="arol" value="1">Estudiante</option>
+										<option  <?php if ($rol == 0) echo 'selected="selected"'; ?> name="arol" value="2">Profesor</option>
+										<option name="arol" value="3">Juez invitado</option>
+										<option  <?php if ($rol == 1) echo 'selected="selected"'; ?> name="arol" value="4">Profesor-Juez</option>
+								</select>
+							</div>
+						</div>
+
+					  <div class="control-group <?php echo !empty($f_idError)?'error':'';?>">
+
+					    <label class="control-label">mail</label>
+					    <div class="controls">
+					      	<input name="mail" type="text" readonly placeholder="mail" value="<?php echo !empty($mail)?$mail:''; ?>">
+					      	<?php if (!empty($f_idError)): ?>
+					      		<span class="help-inline"><?php echo $f_idError;?></span>
+					      	<?php endif; ?>
+					    </div>
+					  </div>
+
+					  <div class="control-group <?php echo !empty($nombError)?'error':'';?>">
+
+					    <label class="control-label">nombre</label>
+					    <div class="controls">
+					      	<input name="nomb" type="text" placeholder="nombre ..." value="<?php echo !empty($nomb)?$nomb:'';?>">
+					      	<?php if (!empty($nombError)): ?>
+					      		<span class="help-inline"><?php echo $nombError;?></span>
+					      	<?php endif;?>
+					    </div>
+					  </div>
+					  
+					  <div class="control-group <?php echo !empty($apellError)?'error':'';?>">
+
+					    <label class="control-label">apellido</label>
+					    <div class="controls">
+					      	<input name="apell" type="text" placeholder="apellido ..." value="<?php echo !empty($apell)?$apell:'';?>">
+					      	<?php if (!empty($apellError)): ?>
+					      		<span class="help-inline"><?php echo $apellError;?></span>
+					      	<?php endif;?>
+					    </div>
+					  </div>
+					  
+					  <div class="control-group <?php echo !empty($contError)?'error':'';?>">
+					    <label class="control-label">contraseña</label>
+					    <div class="controls">
+					      	<input name="cont" type="text" placeholder="contraseña ..." value="<?php echo !empty($cont)?$cont:'';?>">
+					      	<?php if (!empty($contError)): ?>
+					      		<span class="help-inline"><?php echo $contError;?></span>
+					      	<?php endif;?>
+					    </div>
+					  </div>
+
+
+					  	
+
+					  <div class="form-actions">
+						  <button type="submit" class="btn btn-success">Actualizar</button>
+						  <a class="btn" href="asignar_rol_admin_p.php">Regresar</a>
+						</div>
+					</form>
+				</div>
+
+    </div> <!-- /container -->
+  </body>
+</html>
+
+
+

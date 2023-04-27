@@ -261,7 +261,7 @@
 
     </div> <!-- /container -->
   </body>
-</html>s
+</html>
 
 
 
