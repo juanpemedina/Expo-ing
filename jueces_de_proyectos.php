@@ -1,199 +1,103 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <script src="js/bootstrap.min.js"></script>
+	</head>
 
-<head>
-  <link rel="stylesheet" href="css/jueces_de_pro.css">
-</head>
-<header>
-  <h1>Asignacion de Jueces</h1>
-  <nav>
-    <a href="pagina_inicio_a.php">Home</a>
-    <a href="about.html">About</a>
-    <a href="jueces_de_proyectos.php">Jueces de Proyectos</a>
-    <a href="asigna_rol.php">Asignar Roles</a>
-  </nav>
-</header>
-<section id='steezy'>
+	<body>
+	    <div class="container">
+    		<div class="row">
+    			<div class="row">
+    				<h3>Asignacion de Jueces</h3>				
+    			</div>
 
-  <body>
-    <div class="input-container">
-      <input type="text" name="text" class="input" placeholder="Buscar Proyecto">
-      <span class="icon">
-        <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-          <g id="SVGRepo_iconCarrier">
-            <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path opacity="1" d="M14 8H17" stroke="#000" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="#000"
-              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path opacity="1" d="M22 22L20 20" stroke="#000" stroke-width="3.5" stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </g>
-        </svg>
-      </span>
-    </div>
+				<div class="row">
+					<p>
+						<a href="pagina_inicio_a.php" role="button" class="btn btn-lg" style="position:relative; left:780px;">Regresar a página de inicio</a>
+					</p>
 
-    <table>
-      <tr>
-        <td>
-          <h1>Proyectos</h1>
-        </td>
-        <td>
-          <h1>Descripcion</h1>
-        </td>
-        <td>
-          <h3>Juez 1</h3>
-        </td>
-        <td>
-          <h3>Juez 2</h3>
-        </td>
-        <td>
-          <h3>Juez 3</h3>
-        </td>
-        <td>
-          <h3>Juez 4</h3>
-        </td>
-        <td>
-          <h3>Juez 5</h3>
-        </td>
-        <td>
-          <button>Asignacion Automatica</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <img src="/images/imgProyecto.jpg">
-        </td>
-        <td>
-          <h2>Proyecto Ejemplo</h2>
-          <p>Descripción del proyecto ejemplo</p>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Edicion</th>
+								<th>Nombre</th>
+								<th>Area Estrategica</th>
+								<th>Unidad de Formacion</th>
+								<th>Autorizado</th>
+								<th>Juez</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php
+    // Check if the form has been submitted
+    if (isset($_POST['submit'])) {
+        // Get the selected judge
+        $judge = $_POST['judge'];
+        // Get the project ID
+        $project_id = $_POST['project_id'];
 
-        <td>
-          <button>Asignar Manualmente</button>
-        </td>
-      </tr>
+        // Insert the judge and project ID into the R_Juez_Proyecto_Calif table
+        $pdo = Database::connect();
+        $sql = "INSERT INTO R_Juez_Proyecto_Calif (Id_Juez, Id_Proyecto) VALUES (?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array($judge, $project_id));
+        Database::disconnect();
 
-      <tr>
-        <td>
-          <img src="/images/imgProyecto.jpg">
-        </td>
-        <td>
-          <h2>Proyecto Ejemplo</h2>
-          <p>Descripción del proyecto ejemplo</p>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
+        // Redirect to the same page to prevent form resubmission
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit();
+    }
 
-        <td>
-          <button>Asignar Manualmente</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <img src="/images/imgProyecto.jpg">
-        </td>
-        <td>
-          <h2>Proyecto Ejemplo</h2>
-          <p>Descripción del proyecto ejemplo</p>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
+    // Display the table of projects with a form for each project
+    include 'database.php';
+    $pdo = Database::connect();
+    $sql = 'SELECT * FROM R_Proyecto 
+            natural join R_Edicion 
+            natural join R_Area_Estrategica 
+            natural join R_Unidad_Formacion 
+            natural join R_Nivel_Desarrollo 
+            ORDER BY Id_Proyecto';
+    foreach ($pdo->query($sql) as $row) {
+        echo '<tr>';
+        echo '<td>'. $row['NombreEd'] . '</td>';
+        echo '<td>'. $row['NombrePy'] . '</td>';
+        echo '<td>'. $row['NombreAe'] . '</td>';
+        echo '<td>'. $row['Nivel'] . '</td>';
+        echo '<td>'. ($row['Autorizacion'] ? "SI" : "NO") . '</td>';
+        echo '<td width=150>';
 
-        <td>
-          <button>Asignar Manualmente</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <img src="/images/imgProyecto.jpg">
-        </td>
-        <td>
-          <h2>Proyecto Ejemplo</h2>
-          <p>Descripción del proyecto ejemplo</p>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
-        <td>
-          <h3>Juez Ejemplo</h3>
-        </td>
+        // Create a form for the current project
+        echo '<form method="POST">';
+        echo '<input type="hidden" name="project_id" value="'.$row['Id_Proyecto'].'">';
+        echo '<select name="judge">';
+        // Query to get the judges
+        $sql_jueces_y_profesores_jueces = 'SELECT NombreJu as Nombre
+                                           FROM R_Juez
+                                           UNION
+                                           SELECT NombrePr as Nombre
+                                           FROM R_Profesor
+                                           WHERE Es_Juez=1';
+        foreach ($pdo->query($sql_jueces_y_profesores_jueces) as $row_juez_o_profesor) {
+            $selected = ($row_juez_o_profesor['Nombre'] == $row['Juez']) ? 'selected' : '';
+            echo '<option value="'.$row_juez_o_profesor['Nombre'].'" '.$selected.'>'.$row_juez_o_profesor['Nombre'].'</option>';
+        }
+        echo '</select>';
+        echo '<input type="submit" name="submit" value="Seleccionar" class="btn btn-success"/>';
+        echo '</form>';
 
-        <td>
-          <button>Asignar Manualmente</button>
-        </td>
-      </tr>
-    </table>
-  </body>
-
-  <script>
-    $(function () {
-      $(window).scroll(function () {
-        var winTop = $(window).scrollTop();
-        if (winTop >= 30) {
-          $("body").addClass("sticky-header");
-        } else {
-          $("body").removeClass("sticky-header");
-        }//if-else
-      });//win func.
-    });//ready func.
-  </script>
-
-</html>
+        echo '</td>';
+        echo '</tr>';
+    }
+    Database::disconnect();
+?>
+			    		</tbody>
+		      		</table>
+					
+		    	</div>
+				
+		    </div>
+				
+        </div> <!-- /container -->
+	</body>
