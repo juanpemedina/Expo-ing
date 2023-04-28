@@ -3,6 +3,7 @@
 	<head>
 	    <meta 	charset="utf-8">
 	    <link   href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link   href="css/jueces_de_pro.css" rel="stylesheet"> -->
 	    <script src="js/bootstrap.min.js"></script>
 	</head>
 	<body>
@@ -31,16 +32,25 @@
 								<th>Nomina</th>
 								<th>¿Es Juez?</th>
 								<th>
-									<form action="asignar_rol_admin_p.php" style="text-align:center; position:relative; left: 0px;top:15px;" method="post">
-										<div class="controls">	
-											<select name="arol">
-												<option value="1">Todos</option>
-												<option value="2">Profesor</option>
-												<option value="3">Profesor-Juez</option>
+											<select id="dynamic_select" style="position:relative; left: 10px; top:5px;" onchange="document.location.href=this.value">
+											<option value="">Seleciona el filtro</option>
+												<option value="asignar_rol_admin_p.php?arol=1">Todos</option>
+												<option value="asignar_rol_admin_p.php?arol=2">Profesor</option>
+												<option value="asignar_rol_admin_p.php?arol=3">Profesor-Juez</option>
 											</select>
-											<input type="submit" value="Filtrar" class="btn btn-info"/>
-										</div>
-									</form>
+											<!-- <input type="submit" value="Filtrar" class="btn btn-info"/> -->
+											<!-- <script>
+												$(function(){
+												// bind change event to select
+												$('#dynamic_select').on('change', function () {
+													var url = $(this).val(); // get selected value
+													if (url) { // require a URL
+														window.location = url; // redirect
+													}
+													return false;
+												});
+												});
+											</script> -->
 								</th>
 							</tr>
 						</thead>
@@ -48,8 +58,8 @@
 							<?php
 									include 'database.php';
 									$pdo = Database::connect();
-									if(isset($_POST['arol'])){
-										$arol = $_POST['arol'];
+									if(isset($_GET['arol'])){
+										$arol = $_GET['arol'];
 									}else{
 										$arol = 0;
 									}
