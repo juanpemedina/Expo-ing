@@ -47,7 +47,6 @@ $user = $_SESSION["Usuario"];
 
                                         				echo '<td>'. $row['Calif_Final'] . '</td>';
 									echo '<td>'. $row['Autorizacion'] . '</td>';
-echo '<td></td>';
 			                            echo '<td width=250>';
 			    					   	echo '<a class="btn" href="read_proyectos_estudiante.php?id='.$row['Id_Proyecto'].'">Detalles</a>';
 			    					   	echo '&nbsp;';
