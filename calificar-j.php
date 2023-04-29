@@ -1,5 +1,7 @@
 <?php
 session_start();
+$idU = $_SESSION["TipoUsuario"];
+$user = $_SESSION["Usuario"];
 
 require 'database.php';
 
@@ -18,11 +20,7 @@ require 'database.php';
 	$q3Error = NULL;
 	$q4Error = NULL;
 	
-	echo $id;
-	
 	if (!empty($_POST)) {
-	
-		echo $id;
 	
 		$q0 = $_POST['q0'];
 		$q1 = $_POST['q1'];
@@ -59,10 +57,30 @@ require 'database.php';
 		
 			$pdo = Database::connect();
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$sql = "UPDATE R_Juez_Proyecto_Calif set Calificacion = ? WHERE Id_Proyecto = ?";
+			$sql = "UPDATE R_Juez_Proyecto_Calif set Calificacion = ? WHERE Id_Proyecto = ? AND (Id_Juez = ? OR Nomina = ?)";
 			$q = $pdo->prepare($sql);
-			$q->execute(array($result, $id));
+			$q->execute(array($result, $id, $user, $user));
 			Database::disconnect();
+			
+			$count = 0;
+			$result = 0;
+			$pdo = Database::connect();
+			$sql = 'SELECT * FROM R_Juez_Proyecto_Calif WHERE Id_Proyecto = ' . $id . ' AND Calificacion IS NOT NULL';
+			foreach ($pdo->query($sql) as $row) {
+			$cal = $row['Calificacion'];
+			$result = $result + $cal;
+			$count = $count + 1;
+			}
+			Database::disconnect();
+			
+			$rFinal = $result/$count;
+			$pdo = Database::connect();
+			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$sql = "UPDATE R_Proyecto set Calif_Final = ? WHERE Id_Proyecto = ?";
+			$q = $pdo->prepare($sql);
+			$q->execute(array($rFinal, $id));
+			Database::disconnect();
+			
 			header("Location: mis_proyectos_j.php");
 		
 		}
