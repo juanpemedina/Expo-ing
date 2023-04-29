@@ -68,11 +68,11 @@ $user = $_SESSION["Usuario"];
 								   	$sql = 'SELECT * FROM R_Profesor NATURAL JOIN R_Proyecto NATURAL JOIN R_Area_Estrategica NATURAL JOIN R_Unidad_Formacion NATURAL JOIN R_Nivel_Desarrollo WHERE Nomina ="' . $user . '"';
 								   	}
 								   	else if ($id == 3) {
-								   	$sql = 'SELECT * FROM R_Juez NATURAL JOIN R_Juez_Proyecto_Calif JOIN R_Proyecto NATURAL JOIN R_Area_Estrategica NATURAL JOIN R_Unidad_Formacion NATURAL JOIN R_Nivel_Desarrollo WHERE R_Juez_Proyecto_Calif.Id_Proyecto = R_Proyecto.Id_Proyecto AND Id_Juez ="' . $user . '"';
+								   	$sql = 'SELECT * FROM R_Juez NATURAL JOIN R_Juez_Proyecto_Calif JOIN R_Proyecto NATURAL JOIN R_Area_Estrategica NATURAL JOIN R_Unidad_Formacion NATURAL JOIN R_Nivel_Desarrollo WHERE R_Juez_Proyecto_Calif.Id_Proyecto = R_Proyecto.Id_Proyecto AND Id_Juez ="' . $user . '" AND Autorizacion = 1';
 								   	$rQ = $pdo->query($sql);
 								   	$nQ = $rQ -> rowCount();
 								   	if ($nQ == 0) {
-								   	$sql = 'SELECT * FROM R_Profesor NATURAL JOIN R_Proyecto NATURAL JOIN R_Area_Estrategica NATURAL JOIN R_Unidad_Formacion NATURAL JOIN R_Nivel_Desarrollo WHERE Nomina ="' . $user . '"';
+								   	$sql = 'SELECT * FROM R_Profesor NATURAL JOIN R_Juez_Proyecto_Calif JOIN R_Proyecto NATURAL JOIN R_Area_Estrategica NATURAL JOIN R_Unidad_Formacion NATURAL JOIN R_Nivel_Desarrollo WHERE R_Juez_Proyecto_Calif.Id_Proyecto = R_Proyecto.Id_Proyecto AND R_Juez_Proyecto_Calif.Nomina ="' . $user . '" AND Autorizacion = 1';
 								   	}
 								   	}
 								   	
