@@ -13,17 +13,7 @@ $user = $_SESSION["Usuario"];
 		$ufError = null;
 		$nivelError = null;
 		$nomiError = null;
-//		$matriError = null;
-//		$matri2Error = null;
-//		$matri3Error = null;
-//		$matri4Error = null;
-
-/*
-		$matri 	= $_POST['matri'];
-		$matri2 = $_POST['matri2'];
-		$matri3 = $_POST['matri3'];
-		$matri4 = $_POST['matri4'];
-*/
+		
 if (isset($_POST['matri'])) {
     $matri = $_POST['matri'];
 }
@@ -106,68 +96,8 @@ $matriculas = array_filter([$matri, $matri2, $matri3, $matri4]);
             $q = $pdo->prepare($sql);
             $q->execute([$matricula]);
         }
-/*
-$sql11 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
-$q2 = $pdo->prepare($sql11);
-$q2->bindParam(':matri', $matri);
-$q2->execute();
-
-$sql12 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri2, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
-$q22 = $pdo->prepare($sql12);
-$q22->bindParam(':matri2', $matri2);
-$q22->execute();
 
 
-$sql13 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri3, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
-$q23 = $pdo->prepare($sql13);
-$q23->bindParam(':matri3', $matri3);
-$q23->execute();
-
-
-$sql14 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri4, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
-$q24 = $pdo->prepare($sql14);
-$q24->bindParam(':matri4', $matri4);
-$q24->execute();
-
-*/
-
-//if ($matri !== "Selecciona a los Integrantes de tu equipo") {
-//    $sql11 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
-//    $q2 = $pdo->prepare($sql11);
-//    $q2->bindParam(':matri', $matri);
-//    $q2->execute();
-//}
-
-//if ($matri2 !== "Selecciona a los Integrantes de tu equipo") {
-//    $sql12 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri2, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
-//    $q22 = $pdo->prepare($sql12);
-//    $q22->bindParam(':matri2', $matri2);
-//    $q22->execute();
-//}
-
-//if ($matri3 !== "Selecciona a los Integrantes de tu equipo") {
-//    $sql13 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri3, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
-//    $q23 = $pdo->prepare($sql13);
-//    $q23->bindParam(':matri3', $matri3);
-//    $q23->execute();
-//}
-
-//if ($matri4 !== "Selecciona a los Integrantes de tu equipo") {
-//    $sql14 = "INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES (:matri4, (SELECT MAX(Id_Proyecto) FROM R_Proyecto))";
-//    $q24 = $pdo->prepare($sql14);
-//    $q24->bindParam(':matri4', $matri4);
-//    $q24->execute();
-//}
-
-
-
-//$slq4 = 'INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES ("' . $matri . '", (SELECT MAX (Id_Proyecto) FROM R_Proyecto))';
-//			$pdo->query($sql4);
-
-
-
-//			$slq3 = 'INSERT INTO R_Alumno_Proyecto (Matricula, Id_Proyecto) VALUES ("' . $matri . '", (SELECT MAX (Id_Proyecto) FROM R_Proyecto))';
-//			$pdo->query($sql3);
 }
 			Database::disconnect();
 			header("Location: pagina_inicio_e.php");
@@ -199,15 +129,12 @@ $q24->execute();
             <?php
             if ($key == 1) {
             	echo '<a href="pagina_inicio_e.php" class="center">Pagina de Inicio</a>';
-            	echo '"mis_proyectos_j.php" class="center">Mis Proyectos</a>';
             }
             else if ($key == 2) {
             	echo '<a href="pagina_inicio_p.php" class="center">Pagina de Inicio</a>';
-            	echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>';
             }
             else if ($key == 3) {
             	echo '<a href="pagina_inicio_j.php" class="center">Pagina de Inicio</a>';
-            	echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>';
             }
             else {
             	echo '<a href="pagina_inicio_a.php" class="center">Pagina de Inicio</a>';
@@ -215,8 +142,10 @@ $q24->execute();
             
             ?>
             
+            <a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
             <a href="proyectos1.php" class="center">Proyectos</a>
             <a href="about.html" class="center">About</a>
+            <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
           <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="center">&#9776; Menu</span>
@@ -352,7 +281,7 @@ $q24->execute();
 </h2>
 
 
-      <div class="control-group <?php echo !empty($matriError)?'error':'';?>"> <!--¿CÓMO METO LA Id_Proyecto DEL QUE APENAS VOY A CREAR A R_Alumno_Proyecto-->
+      <div class="control-group <?php echo !empty($matriError)?'error':'';?>">
 				    	<div class="controls">
 	                       	<select name ="matri" id="alum" class="input">
 		                        <option value="">Selecciona a los Integrantes de tu equipo</option>
@@ -373,7 +302,7 @@ $q24->execute();
 					      		<span class="help-inline"><?php echo $matriError;?></span>
 						</div>
 					</div>
-<div class="control-group <?php echo !empty($matriError)?'error':'';?>"> <!--¿CÓMO METO LA Id_Proyecto DEL QUE APENAS VOY A CREAR A R_Alumno_Proyecto-->
+<div class="control-group <?php echo !empty($matriError)?'error':'';?>"> 
 				    	<div class="controls">
 	                       	<select name ="matri2" id="alum" class="input">
 		                        <option value="">Selecciona a los Integrantes de tu equipo</option>
@@ -393,7 +322,7 @@ $q24->execute();
 					      		<span class="help-inline"><?php echo $matriError;?></span>
 						</div>
 					</div>
-<div class="control-group <?php echo !empty($matriError)?'error':'';?>"> <!--¿CÓMO METO LA Id_Proyecto DEL QUE APENAS VOY A CREAR A R_Alumno_Proyecto-->
+<div class="control-group <?php echo !empty($matriError)?'error':'';?>"> 
 				    	<div class="controls">
 	                       	<select name ="matri3" id="alum" class="input">
 		                        <option value="">Selecciona a los Integrantes de tu equipo</option>
@@ -412,7 +341,7 @@ $q24->execute();
 					      	<?php if (($matri3Error) != null) ?>
 					      		<span class="help-inline"><?php echo $matriError;?></span>
 						</div>
-					</div><div class="control-group <?php echo !empty($matriError)?'error':'';?>"> <!--¿CÓMO METO LA Id_Proyecto DEL QUE APENAS VOY A CREAR A R_Alumno_Proyecto-->
+					</div><div class="control-group <?php echo !empty($matriError)?'error':'';?>"> 
 				    	<div class="controls">
 	                       	<select name ="matri4" id="alum" class="input">
 		                        <option value="">Selecciona a los Integrantes de tu equipo</option>
