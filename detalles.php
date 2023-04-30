@@ -3,6 +3,7 @@
 session_start();
 $key = $_SESSION["TipoUsuario"];
 $user = $_SESSION["Usuario"];
+$record = $_SESSION["Record"];
 
 if ( $key!=1 and $key!=2 and $key!=3 and $key!=4) {
 		header("Location: 404.html");
@@ -10,8 +11,12 @@ if ( $key!=1 and $key!=2 and $key!=3 and $key!=4) {
 
     require 'database.php';
 	$id = null;
+	$idA = null;
 	if ( !empty($_GET['id'])) {
 		$id = $_REQUEST['id'];
+	}
+	if ( !empty($_GET['idA'])) {
+		$idA = $_REQUEST['idA'];
 	}
 	if ( $id==null) {
 		header("Location: index.php");
@@ -230,7 +235,13 @@ if ( $key!=1 and $key!=2 and $key!=3 and $key!=4) {
 		      </div>
 		      
 		      <div class="form-actions">
-						<a class="btn" href="mis_proyectos_j.php">Regresar</a>
+		      <?php
+		      if (!empty($record)) {
+		      	echo '<a class="btn" href="todosproyectos.php?idA=' . $record . '">Regresar</a>';
+		      } else {
+		      	echo '<a class="btn" href="mis_proyectos_j.php">Regresar</a>';
+		      }
+		      ?>
 					</div>
 	
     </form>
