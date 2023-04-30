@@ -69,9 +69,14 @@ if ( $key!=1 and $key!=2 and $key!=3 and $key!=4) {
             	echo '<a href="pagina_inicio_a.php" class="center">Pagina de Inicio</a>';
             }
             
+            if (!empty($record)) {
+		      	echo '<a class="btn" href="mis_proyectos_j.php">Mis Proyectos</a>';
+	    } else {
+		      	echo '<a class="btn" href="proyectos1.php">Proyectos</a>';
+		      }
+            
             ?>
             
-            <a href="proyectos1.php" class="center">Proyectos</a>
             <a href="about.html" class="center">About</a>
             <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
