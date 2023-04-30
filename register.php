@@ -65,7 +65,7 @@ else
 		echo "Adios";
 	}
 	if ($result) {
-		header("Location: login.html");	
+		header("Location: index.html");	
 	}
 	else {
 		echo "Usuario No Creado";
