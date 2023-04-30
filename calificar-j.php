@@ -1,7 +1,12 @@
 <?php
+
 session_start();
-$idU = $_SESSION["TipoUsuario"];
+$key = $_SESSION["TipoUsuario"];
 $user = $_SESSION["Usuario"];
+
+if ( $key!=3 and $key!=4) {
+		header("Location: 404.html");
+	}
 
 require 'database.php';
 
@@ -106,32 +111,51 @@ require 'database.php';
 <head>
   <title>Calificar</title>
   <meta charset="UTF-8" />
-
+<!--Montserrat font-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/pagina_inicio.css" />
+    <script src="JavaScript/menu.js"></script> 
   <link rel="stylesheet" href="css/calificajuez.css">
   
 
 </head>
 
-<header>
-	
-	<section class="w3-threequarter w3-padding-large w3-right"> <!--NO FUNCIONA BIEN EL SIDEBAR-->
+<body>
+
+<section class="w3-threequarter w3-padding-large w3-right">
         <!--DESKTOP NAVIGATION-->
         <div class="w3-container w3-padding-large w3-border-bottom w3-hide-small">
           
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="pagina_inicio_j.php" class="center">Pagina de Inicio</a>
-            <a href="mis_proyectos_j.php" class="center">Regresar</a> 
-            <a href="proyectos1.php" class="center">Proyectos</a> 
+            
+            <?php
+            if ($key == 1) {
+            	echo '<a href="pagina_inicio_e.php" class="center">Pagina de Inicio</a>';
+            	echo '<a href="registro.php" class="center">Registrar</a>';
+            }
+            else if ($key == 2) {
+            	echo '<a href="pagina_inicio_p.php" class="center">Pagina de Inicio</a>';
+            }
+            else if ($key == 3) {
+            	echo '<a href="pagina_inicio_j.php" class="center">Pagina de Inicio</a>';
+            }
+            else {
+            	echo '<a href="pagina_inicio_a.php" class="center">Pagina de Inicio</a>';
+            }
+            
+            ?>
+            
+            <a href="proyectos1.php" class="center">Proyectos</a>
             <a href="about.html" class="center">About</a>
+            <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
-          <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="center">&#9776; Menu</span>
-          
-  <h1>Calificar Proyectos</h1>
-</header>
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="left">&#9776; Menu</span>
+	</div>
+</section>
 
-<body>
+<h1>Calificar Proyectos</h1>
           
   <!-- Comments -->
   <h1>Rubrica de Calificaciones</h1>
@@ -300,6 +324,10 @@ require 'database.php';
         <div class="form-actions">
 		<button class="button" onclick="returnScore()">Calificar</button>
 	</div>
+	
+	<div class="form-actions">
+						<a class="btn" href="mis_proyectos_j.php">Regresar</a>
+					</div>
         
 </form>
   
