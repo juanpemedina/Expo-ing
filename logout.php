@@ -1,8 +1,5 @@
 <?php
 session_start();
 session_destroy();
-echo "Sesión Cerrada";
+header("Location: index.html");
 ?>
-
-<br>
-<a href="index.html" class="center">Regresar</a>
