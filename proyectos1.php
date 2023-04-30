@@ -1,7 +1,12 @@
 <?php
-	session_start();
-	$id = $_SESSION["TipoUsuario"];
-	$user = $_SESSION["Usuario"];
+
+session_start();
+$key = $_SESSION["TipoUsuario"];
+$user = $_SESSION["Usuario"];
+
+if ( $key!=1 and $key!=2 and $key!=3 and $key!=4) {
+		header("Location: 404.html");
+	}
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +15,10 @@
 <head>
   <title>Proyectos</title>
   <meta charset="UTF-8" />
+<!--Montserrat font-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/pagina_inicio.css" />
+    <script src="JavaScript/menu.js"></script> 
   <link rel="stylesheet" href="css/proyectos1.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -18,7 +27,7 @@
 
 <body>
 
-<section class="w3-threequarter w3-padding-large w3-right"> <!--NO FUNCIONA BIEN EL SIDEBAR-->
+<section class="w3-threequarter w3-padding-large w3-right">
         <!--DESKTOP NAVIGATION-->
         <div class="w3-container w3-padding-large w3-border-bottom w3-hide-small">
           
@@ -26,18 +35,15 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             
             <?php
-            if ($id == 1) {
+            if ($key == 1) {
             	echo '<a href="pagina_inicio_e.php" class="center">Pagina de Inicio</a>';
             	echo '<a href="registro.php" class="center">Registrar</a>';
-            	echo '"mis_proyectos_j.php" class="center">Mis Proyectos</a>';
             }
-            else if ($id == 2) {
+            else if ($key == 2) {
             	echo '<a href="pagina_inicio_p.php" class="center">Pagina de Inicio</a>';
-            	echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>';
             }
-            else if ($id == 3) {
+            else if ($key == 3) {
             	echo '<a href="pagina_inicio_j.php" class="center">Pagina de Inicio</a>';
-            	echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>';
             }
             else {
             	echo '<a href="pagina_inicio_a.php" class="center">Pagina de Inicio</a>';
@@ -45,12 +51,12 @@
             
             ?>
             
-            <a href="#" class="center">Proyectos</a>
             <a href="about.html" class="center">About</a>
+            <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
-          <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="center">&#9776; Menu</span>
-
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="left">&#9776; Menu</span>
+	</div>
 </section>
 
   <h2>Evento Actual</h2>
