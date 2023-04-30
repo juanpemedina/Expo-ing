@@ -6,6 +6,10 @@ $user = $_SESSION["Usuario"];
 
 	require 'database.php';
 
+if ( $key!=1 and $key!=4) {
+		header("Location: 404.html");
+	}
+
 		$nombError = null;
 		$descError = null;
 		$multError = null;
