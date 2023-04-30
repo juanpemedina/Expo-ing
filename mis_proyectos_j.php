@@ -4,6 +4,8 @@ session_start();
 $key = $_SESSION["TipoUsuario"];
 $user = $_SESSION["Usuario"];
 
+$_SESSION["Record"] = null;
+
 if ( $key!=1 and $key!=2 and $key!=3 and $key!=4) {
 		header("Location: 404.html");
 	}
