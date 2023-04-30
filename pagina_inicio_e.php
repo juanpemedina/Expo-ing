@@ -57,6 +57,12 @@ $key = $_SESSION["TipoUsuario"];
             <span class="w3-margin-left download-text">Registrar Proyecto</span>
           </a>
         </div>
+        <div class="w3-container w3-padding-16">
+          <a href="mis_proyectos_j.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
+            <i data-feather="arrow-up" style="vertical-align: -0.35em;"></i>
+            <span class="w3-margin-left download-text">Mis Proyectos</span>
+          </a>
+        </div>
       </section>
 
       <!--CV CONTENT SECTION-->
@@ -68,9 +74,10 @@ $key = $_SESSION["TipoUsuario"];
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#" class="center">Pagina de Inicio</a>
             <a href="registro.php" class="center">Registrar</a>
-            <a href="#" class="center">Mis Proyectos</a> <!--FALTA CONECTAR ESTE BOTON-->
+            <a href="mis_proyectos_j.php" class="center">Mis Proyectos</a> <!--FALTA CONECTAR ESTE BOTON-->
             <a href="proyectos1.php" class="center">Proyectos</a>
             <a href="about.html" class="center">About</a>
+            <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
           <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="center">&#9776; Menu</span>
