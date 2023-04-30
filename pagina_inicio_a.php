@@ -57,7 +57,7 @@ $key = $_SESSION["TipoUsuario"];
           </a>
         </div>
         <div class="w3-container w3-padding-16">
-          <a href="mis_proyectos_j.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
+          <a href="asignar_rol_admin_e.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
             <i data-feather="user" style="vertical-align: -0.35em;"></i>
             <span class="w3-margin-left download-text">   Asignar Rol   </span>
           </a>
@@ -72,8 +72,8 @@ $key = $_SESSION["TipoUsuario"];
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#" class="center">Pagina de Inicio</a>
-            <a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
-            <a href="proyectos1.php" class="center">Proyectos</a>
+            <a href="proyectos_admin.php" class="center">Proyectos</a>
+            <a href="asignar_rol_admin_e.php" class="center">Asignar Rol</a>
             <a href="about.html" class="center">About</a>
             <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
