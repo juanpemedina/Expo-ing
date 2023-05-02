@@ -61,6 +61,7 @@
                         echo '<form method="POST">';
                         echo '<input type="hidden" name="judge_id" value="'.$row_juez['Matricula'].'">';
                         echo '<select name="project_id">';
+                        echo '<option value="">Seleciona Proyecto</option>';
                         // Query to get the projects
                         $sql_proyectos = 'SELECT * FROM R_Proyecto';
                         foreach ($pdo->query($sql_proyectos) as $row_proyecto) {
