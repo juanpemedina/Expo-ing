@@ -36,11 +36,19 @@
                         $judge_id = $_POST['judge_id'];
                         $project_id = $_POST['project_id'];
                     
+                        // Check if the judge's matricula starts with "L"
+                        $nomina = null;
+                        $id_juez = $judge_id;
+                        if (substr($judge_id, 0, 1) === 'L') {
+                            $nomina = $judge_id;
+                            $id_juez = null;
+                        }
+                    
                         // Insert the judge and project IDs into the R_Juez_Proyecto_Calif table
                         $pdo = Database::connect();
-                        $sql = 'INSERT INTO R_Juez_Proyecto_Calif (Id_Juez, Id_Proyecto) VALUES (?, ?)';
+                        $sql = 'INSERT INTO R_Juez_Proyecto_Calif (Id_Juez, Nomina, Id_Proyecto) VALUES (?, ?, ?)';
                         $q = $pdo->prepare($sql);
-                        $q->execute(array($judge_id, $project_id));
+                        $q->execute(array($id_juez, $nomina, $project_id));
                     
                         // Display a success message
                         echo '<div class="alert alert-success">Asignación exitosa</div>';
@@ -63,8 +71,10 @@
                         echo '<select name="project_id">';
                         echo '<option value="">Seleciona Proyecto</option>';
                         // Query to get the projects
-                        $sql_proyectos = 'SELECT * FROM R_Proyecto';
-                        foreach ($pdo->query($sql_proyectos) as $row_proyecto) {
+                        $sql_proyectos = 'SELECT * FROM R_Proyecto WHERE Id_Uf NOT IN (SELECT Id_Uf FROM R_Profesor_Uf WHERE Nomina = ?)';
+                        $q_proyectos = $pdo->prepare($sql_proyectos);
+                        $q_proyectos->execute(array($row_juez['Matricula']));
+                        while ($row_proyecto = $q_proyectos->fetch(PDO::FETCH_ASSOC)) {
                             $selected = ($row_proyecto['NombrePy'] == $row_juez['Nombre']) ? 'selected' : '';
                             echo '<option value="'.$row_proyecto['Id_Proyecto'].'" '.$selected.'>'.$row_proyecto['NombrePy'].'</option>';
                         }
