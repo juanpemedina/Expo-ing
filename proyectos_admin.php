@@ -39,9 +39,10 @@ if ( $key!=4) {
 	                	<th>Edicion	</th>
 	                	<th>Nombre	</th>
 	                	<th>Area Estrategica 				</th>
-	                	<th>Unidad de Formacion	</th>
                         	<th>Nivel de Desarrollo 					</th>
 	                  	<th>Autorizacion					</th>
+						  <th>					</th>
+
 	                </tr>
 	            </thead>
 	            <tbody>
