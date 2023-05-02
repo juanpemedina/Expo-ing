@@ -1,5 +1,13 @@
 <?php
 
+session_start();
+$key = $_SESSION["TipoUsuario"];
+$user = $_SESSION["Usuario"];
+
+if ( $key!=1) {
+		header("Location: 404.html");
+	}
+	
 	require 'database.php';
 
 	$id = null;
@@ -72,7 +80,7 @@
 			$q = $pdo->prepare($sql);
 			$q->execute(array($id, $nomi, $area, $uf, $nivel, $nomb, $desc, $mult, $id));
 			Database::disconnect();
-			header("Location: proyectos_estudiante.php");
+			header("Location: mis_proyectos_j.php");
 		}
 	}
 	else {
@@ -254,7 +262,7 @@
 
 					  <div class="form-actions">
 						  <button type="submit" class="btn btn-success">Actualizar</button>
-						  <a class="btn" href="proyectos_estudiante.php">Regresar</a>
+						  <a class="btn" href="mis_proyectos_j.php">Regresar</a>
 						</div>
 					</form>
 				</div>
