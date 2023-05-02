@@ -1,13 +1,5 @@
 <?php
 
-session_start();
-$key = $_SESSION["TipoUsuario"];
-$user = $_SESSION["Usuario"];
-
-if ( $key!=4) {
-		header("Location: 404.html");
-	}
-
 	require 'database.php';
 
 	$id = null;
@@ -29,6 +21,9 @@ if ( $key!=4) {
 		$ufError = null;
 		$nivelError = null;
 		$nomiError = null;
+		$califError = null;
+		$authError = null;
+
 
 		// keep track post values
 		$id   = $_POST['id'];
@@ -39,6 +34,9 @@ if ( $key!=4) {
 		$uf = $_POST['uf'];
 		$nivel = $_POST['nivel'];
 		$nomi = $_POST['nomi'];
+		$calif = $_POST['calif'];
+		$auth = $_POST['auth'];
+
 		
 		/// validate input
 		$valid = true;
@@ -71,14 +69,19 @@ if ( $key!=4) {
 			$nomiError = 'Por favor selecciona a tu profesor';
 			$valid = false;
 		}
+		if ($calif>4 || $calif<0) {
+			$califError = 'Por favor ingrese una calificacion';
+			$valid = false;
+		}
+		
 
 		// update data
 		if ($valid) {
 			$pdo = Database::connect();
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$sql = "UPDATE R_Proyecto  set Id_Proyecto =?, Nomina =?, Id_Area =?, Id_Uf =?, Id_Nivel =?, NombrePy =?, Descripcion =?, Multimedia =? WHERE Id_Proyecto = ?";
+			$sql = "UPDATE R_Proyecto  set Id_Proyecto =?, Nomina =?, Id_Area =?, Id_Uf =?, Id_Nivel =?, NombrePy =?, Descripcion =?, Multimedia =?, Calif_Final=?, Autorizacion=? WHERE Id_Proyecto = ?";
 			$q = $pdo->prepare($sql);
-			$q->execute(array($id, $nomi, $area, $uf, $nivel, $nomb, $desc, $mult, $id));
+			$q->execute(array($id, $nomi, $area, $uf, $nivel, $nomb, $desc, $mult, $calif, $auth,$id));
 			Database::disconnect();
 			header("Location: proyectos_admin.php");
 		}
@@ -98,6 +101,9 @@ if ( $key!=4) {
 		$nomb 	= $data['NombrePy'];
 		$desc = $data['Descripcion'];
 		$mult = $data['Multimedia'];
+		$calif = $data['Calif_Final'];
+		$auth = $data['Autorizacion'];
+
 		Database::disconnect();
 	}
 ?>
@@ -255,6 +261,33 @@ if ( $key!=4) {
 					      	<?php endif;?>
 					    	</div>
 					  	</div>
+
+						<div class="control-group <?php echo !empty($califError)?'error':'';?>">
+
+							<label class="control-label">Calificacion</label>
+							<div class="controls">
+								  <input name="calif" type="number" min="0" max="4" placeholder="calificacion ..." value="<?php echo !empty($calif)?$calif:'';?>">
+								  <?php if (!empty($califError)): ?>
+									  <span class="help-inline"><?php echo $califError;?></span>
+								  <?php endif;?>
+							</div>
+						</div>
+
+						<div class="control-group <?php echo !empty($authError)?'error':'';?>">
+					    	<label class="control-label">Autorización</label>
+					    	<div class="controls">
+                            	<select name ="auth">
+                                    <option value="">Selecciona SI o NO</option>
+									<option value="1">SI</option>
+                                    <option value="0">NO</option>
+                                </select>
+					      	<?php if (!empty($authlError)): ?>
+					      		<span class="help-inline"><?php echo $authError;?></span>
+					      	<?php endif;?>
+					    	</div>
+					  	</div>
+
+
 					  	
 					  	<!--¿CAMBIAMOS A LOS INTEGRANTES?-->
 
