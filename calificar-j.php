@@ -86,7 +86,10 @@ require 'database.php';
 			$q->execute(array($rFinal, $id));
 			Database::disconnect();
 			
-			header("Location: mis_proyectos_j.php");
+			echo'<script type="text/javascript">
+			alert("Proyecto Calificado");
+			window.location.href="mis_proyectos_j.php";
+			</script>';
 		
 		}
 		
