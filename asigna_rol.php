@@ -12,7 +12,7 @@ session_start();
   <h1>Modificar Usuarios</h1>
   <nav>
     <a href="pagina_inicio_a.php">Home</a>
-    <a href="about.html">About</a>
+    <a href="about.php">About</a>
     <a href="jueces_de_proyectos.php">Jueces de Proyectos</a>
     <a href="asigna_rol.php">Asignar Roles</a>
   </nav>
