@@ -39,7 +39,10 @@ if ( $key!=2 and $key!=4) {
 			$autorizacionq = ($autorizacion=="S")?1:0;
 			$q->execute(array($id,$autorizacionq, $id));
 			Database::disconnect();
-			header("Location: mis_proyectos_j.php");
+			echo'<script type="text/javascript">
+			alert("Autorización Actualizada");
+			window.location.href="mis_proyectos_j.php";
+			</script>';
 		}
 	}
 	else {
