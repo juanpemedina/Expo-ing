@@ -40,7 +40,7 @@ session_start();
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="pagina_inicio_p.php" class="center">Pagina de Inicio</a>
             <a href="autorizar.php" class="center">Mis Proyectos</a> <!--FALTA CONECTAR ESTE BOTON-->
-            <a href="about.html" class="center">About</a>
+            <a href="about.php" class="center">About</a>
           </div>
 
           <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="center">&#9776; Menu</span>
