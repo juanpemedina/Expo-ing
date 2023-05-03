@@ -150,7 +150,7 @@ require 'database.php';
             ?>
             
             <a href="proyectos1.php" class="center">Proyectos</a>
-            <a href="about.html" class="center">About</a>
+            <a href="about.php" class="center">About</a>
             <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
