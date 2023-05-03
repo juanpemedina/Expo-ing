@@ -68,7 +68,7 @@ $key = $_SESSION["TipoUsuario"];
             <a href="pagina_inicio_p.php" class="center">Pagina de Inicio</a>
             <a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
             <a href="todosproyectos.php" class="center">Proyectos</a>
-            <a href="about.html" class="center">About</a>
+            <a href="about.php" class="center">About</a>
             <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
