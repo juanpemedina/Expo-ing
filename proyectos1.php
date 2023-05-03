@@ -52,7 +52,7 @@ if ( $key!=1 and $key!=2 and $key!=3 and $key!=4) {
             ?>
             
 	    <a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
-            <a href="about.html" class="center">About</a>
+            <a href="about.php" class="center">About</a>
             <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
