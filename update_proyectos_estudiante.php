@@ -80,7 +80,10 @@ if ( $key!=1) {
 			$q = $pdo->prepare($sql);
 			$q->execute(array($id, $nomi, $area, $uf, $nivel, $nomb, $desc, $mult, $id));
 			Database::disconnect();
-			header("Location: mis_proyectos_j.php");
+			echo'<script type="text/javascript">
+			alert("Proyecto Actualizado");
+			window.location.href="mis_proyectos_j.php";
+			</script>';
 		}
 	}
 	else {
