@@ -104,7 +104,10 @@ $matriculas = array_filter([$matri, $matri2, $matri3, $matri4]);
 
 }
 			Database::disconnect();
-			header("Location: pagina_inicio_e.php");
+			echo'<script type="text/javascript">
+			alert("Proyecto Registrado");
+			window.location.href="pagina_inicio_e.php";
+			</script>';
 		}
 }
 ?>
