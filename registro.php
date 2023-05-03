@@ -45,8 +45,15 @@ if (isset($_POST['matri4'])) {
 		$nomi = $_POST['nomi'];
 
 		$proye = $_POST['proye'];
-
-
+		
+		
+		$pdo = Database::connect();
+			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$sql1 = 'SELECT * FROM R_Profesor_Uf WHERE Nomina = "' . $nomi . '" AND Id_Uf = ' . $uf;
+			$q1 = $pdo->query($sql1);
+			$nq = $q1 -> rowCount();
+		
+		
 		// validate input
 		$valid = true;
 
@@ -76,6 +83,10 @@ if (isset($_POST['matri4'])) {
 		}
 		if (empty($nomi)) {
 			$nomiError = 'Por favor selecciona a tu profesor';
+			$valid = false;
+		}
+		if ($nq == 0) {
+			$nomiError = 'La unidad de formación y el profesor no coinciden';
 			$valid = false;
 		}
 
@@ -256,9 +267,9 @@ $matriculas = array_filter([$matri, $matri2, $matri3, $matri4]);
 		                        <option value="">Selecciona a tu profesor</option>
 		                        <?php
 							   		$pdo = Database::connect();
-							   		$query = 'SELECT * FROM R_Profesor NATURAL JOIN R_Profesor_Uf NATURAL JOIN R_Unidad_Formacion';
+							   		$query = 'SELECT * FROM R_Profesor';
 			 				   		foreach ($pdo->query($query) as $row) {
-		                        		if ($row['Id_Uf']==$uf)
+		                        		if ($row['Nomina']==$nomi)
 		                        			echo "<option selected value='" . $row['Nomina'] . "'>" . $row['NombrePr'] . $row['ApellidoPr'] . "</option>";
 		                        		else
 		                        			echo "<option value='" . $row['Nomina'] . "'>" . $row['NombrePr'] . $row['ApellidoPr'] . "</option>";
