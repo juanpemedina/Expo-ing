@@ -174,7 +174,7 @@ $key = $_SESSION["TipoUsuario"];
     <div class="w3-margin-top">
       <?php
         // Connect to database
-        $connection = mysqli_connect("localhost", "hector", "a01733087", "proyecto");
+        $connection = mysqli_connect("localhost", "TC2005B_401_2", "S9BrLkLP*utl8UTl", "TC2005B_401_2");
         if (!$connection) {
           die("Connection failed: " . mysqli_connect_error());
         }
