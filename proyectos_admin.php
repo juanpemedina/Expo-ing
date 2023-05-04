@@ -32,7 +32,10 @@ if ( $key!=4) {
 						<a href="pagina_inicio_a.php" role="button" class="btn btn-lg" style = "position:relative; left:515px;" >Regresar a página de inicio</a>
 									
 					</p>
+    					<a href="generate_excel_py.php" class="btn btn-success" role="button">Exportar Excel</a>
+					<p>
 
+					</p>
 					<table class="table table-striped table-bordered">
 	            <thead>
 	                <tr>
