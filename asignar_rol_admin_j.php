@@ -36,6 +36,10 @@ $key = $_SESSION["TipoUsuario"];
 						<a href="" class="btn btn-inverse disabled" role="button">Juez</a>
 					</p>
 
+					<p>
+    					<a href="generate_excel_j.php" class="btn btn-success" role="button">Exportar Excel</a>
+					</p>
+
 					<table class="table table-striped table-bordered">
 					<thead>
 	                <tr>
