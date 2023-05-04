@@ -36,6 +36,10 @@ $key = $_SESSION["TipoUsuario"];
 						<a href="asignar_rol_admin_j.php" class="btn btn-info" role="button">Juez</a>
 					</p>
 
+					<p>
+    					<a href="generate_excel_e.php" class="btn btn-success" role="button">Exportar Excel</a>
+					</p>
+
 					<table class="table table-striped table-bordered">
 					<thead>
 	                <tr>
@@ -73,3 +77,4 @@ $key = $_SESSION["TipoUsuario"];
 	    </div> <!-- /container -->
 	</body>
 </html>
+
