@@ -51,7 +51,7 @@ $key = $_SESSION["TipoUsuario"];
         </div>
         <!--CV Upload BUTTON-->
         <div class="w3-container w3-padding-16">
-          <a href="mis_proyectos_j.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
+          <a href="autorizar.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
             <i data-feather="folder" style="vertical-align: -0.35em;"></i>
             <span class="w3-margin-left download-text">Mis Proyectos</span>
           </a>
@@ -66,9 +66,9 @@ $key = $_SESSION["TipoUsuario"];
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="pagina_inicio_p.php" class="center">Pagina de Inicio</a>
-            <a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
+            <a href="autorizar.php" class="center">Mis Proyectos</a>
             <a href="todosproyectos.php" class="center">Proyectos</a>
-            <a href="about.php" class="center">About</a>
+            <a href="about.html" class="center">About</a>
             <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
@@ -99,25 +99,32 @@ $key = $_SESSION["TipoUsuario"];
           <div id="anuncios" class="w3-container w3-margin-top-20-percent w3-cursive">
             <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">Anuncios</h2>
             <div class="w3-container w3-margin-top-2 w3-cursive">
+              
 
-              <!--Announcements-->
-              <h4 class="w3-border-amber">¡Bienvenidos a la feria de ingeniería!</h4>
-              <div class="">
-                <h5>General</h5>
-                <p>March 2023 - Present</p>
-                <ul class="w3-ul" style="font-weight: 500;">
-                  <li>Recuerden mantener la distancia social y seguir las medidas de higiene en todo momento</li>
-                </ul>
-              </div>
-              <div class="">
-                <h4>¡Atención Profesores!</h4>
-                <h5>Profesor</h5>
-                <p>March 2023 - Present</p>
-                <ul class="w3-ul" style="font-weight: 500;">
-                  <li>El plazo para el registro de proyectos ha sido extendido hasta el próximo viernes</li>
-                </ul>
-              </div>
-            </div>
+    <!--ANNOUNCEMENTS SECTION-->
+    <div class="w3-margin-top">
+      <?php
+        // Connect to database
+        $connection = mysqli_connect("localhost", "hector", "a01733087", "proyecto");
+        if (!$connection) {
+          die("Connection failed: " . mysqli_connect_error());
+        }
+
+        // Select announcements from database
+        $sql = "SELECT Titulo, Texto FROM R_Anuncios ORDER BY Id_Anuncio desc";
+        $result = mysqli_query($connection, $sql);
+
+        // Output each announcement
+        while($row = mysqli_fetch_assoc($result)) {
+          echo "<h2>" . $row["Titulo"] . "</h2>";
+          echo "<p>" . $row["Texto"] . "</p>";
+        }
+
+        // Close database connection
+        mysqli_close($connection);
+      ?>
+    </div>
+  </div>
 
           <!--FAQ-->
           <div id="faq" class="w3-container w3-margin-top-20-percent w3-cursive">
