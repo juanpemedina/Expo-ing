@@ -15,9 +15,11 @@ $key = $_SESSION["TipoUsuario"];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Juez</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/w3.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <!--Montserrat font-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/pagina_inicio.css" />
@@ -74,7 +76,7 @@ $key = $_SESSION["TipoUsuario"];
             <a href="#" class="center">Pagina de Inicio</a>
             <a href="proyectos_admin.php" class="center">Proyectos</a>
             <a href="asignar_rol_admin_e.php" class="center">Asignar Rol</a>
-            <a href="about.php" class="center">About</a>
+            <a href="about.html" class="center">About</a>
             <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
@@ -103,7 +105,7 @@ $key = $_SESSION["TipoUsuario"];
 
           <!--Anuncios-->
           <div id="anuncios" class="w3-container w3-margin-top-20-percent w3-cursive">
-            <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">Anuncios</h2>
+            <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">Publicar Anuncios</h2>
             <div class="w3-container w3-margin-top-2 w3-cursive">
 
               <!--Announcements-->
@@ -111,16 +113,87 @@ $key = $_SESSION["TipoUsuario"];
                 <div class="w3-col m12">
                   <div class="w3-card w3-round w3-white">
                     <div class="w3-container w3-padding">
+                      <h4 class="w3-border-amber">Escribe aquí el titulo del anuncio</h4>
+                      <form method="POST" action="guardar_anuncio.php">
+
+                      <textarea id="w3review" name="titulo" rows="4" cols="50"></textarea>
                       <h4 class="w3-border-amber">Escribe aquí tus anuncios</h4>
-                      <form action="">
-                      <textarea id="w3review" size = "30" name="w3review" rows="4" cols="50"></textarea>
-                        <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i><b>Publicar anuncio</b></button> 
+                      <textarea id="w3review" name="anuncio" rows="4" cols="50"></textarea>
+                        <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i><b>Publicar anuncio</b></button> 
                       </form>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <?php
+              if (isset($_GET['success']) && $_GET['success'] == 1) {
+              echo '<p>El mensaje se ha publicado con éxito.</p>';
+              }
+            ?>
+
+<div id="anuncios2" class="w3-container w3-margin-top-20-percent w3-cursive">
+            <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">Eliminar/Actualizar Anuncios</h2>
+            <div class="w3-container w3-margin-top-2 w3-cursive">
+            <table class="table table-striped table-bordered">
+					<thead>
+	                <tr>
+	                	<th>Titulo</th>
+	                	<th></th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	              	<?php
+								   	$pdo = Database::connect();
+								   	$sql = 'SELECT * FROM R_Anuncios ORDER BY Id_Anuncio desc';
+				 				   	foreach ($pdo->query($sql) as $row) {
+											echo '<tr>';
+			    					   	echo '<td>'. $row['Titulo'] . '</td>';
+			                            echo '<td width=250>';
+			    					  	echo '<a class="btn btn-success" href="update_anuncio.php?id='.$row['Id_Anuncio'].'">Actualizar</a>';
+			    					   	echo '&nbsp;';
+			    					   	echo '<a class="btn btn-danger" href="delete_anuncio.php?id='.$row['Id_Anuncio'].'">Eliminar</a>';
+			    					   	echo '</td>';
+										  echo '</tr>';
+								    }
+								   	Database::disconnect();
+				  				?>
+			    		</tbody>
+		      </table>
+
+            </div>
+
+             <!--Anuncios-->
+          <div id="anuncios" class="w3-container w3-margin-top-20-percent w3-cursive">
+            <h2 class="w3-border-bottom w3-border-amber" style="border-width: 3px !important;">Anuncios Publicados</h2>
+            <div class="w3-container w3-margin-top-2 w3-cursive">
+              
+
+    <!--ANNOUNCEMENTS SECTION-->
+    <div class="w3-margin-top">
+      <?php
+        // Connect to database
+        $connection = mysqli_connect("localhost", "hector", "a01733087", "proyecto");
+        if (!$connection) {
+          die("Connection failed: " . mysqli_connect_error());
+        }
+
+        // Select announcements from database
+        $sql = "SELECT Titulo, Texto FROM R_Anuncios ORDER BY Id_Anuncio desc";
+        $result = mysqli_query($connection, $sql);
+
+        // Output each announcement
+        while($row = mysqli_fetch_assoc($result)) {
+          echo "<h2>" . $row["Titulo"] . "</h2>";
+          echo "<p>" . $row["Texto"] . "</p>";
+        }
+
+        // Close database connection
+        mysqli_close($connection);
+      ?>
+    </div>
+  </div>
 
           <!--FAQ-->
           <div id="faq" class="w3-container w3-margin-top-20-percent w3-cursive">
