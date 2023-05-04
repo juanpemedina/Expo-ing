@@ -123,7 +123,7 @@ if ( $key!=1 and $key!=2 and $key!=3 and $key!=4) {
 			    					   	
 			    					   	if ($key == 1 and $row['Autorizacion'] == 0) {
 			    					   	echo '<td width=150>';
-			    					   	echo '<a class="btn btn-success" href="#?id='.$row['Id_Proyecto'].'">Actualizar</a>';
+			    					   	echo '<a class="btn btn-success" href="update_proyectos_estudiante.php?id='.$row['Id_Proyecto'].'">Actualizar</a>';
 			    					   	echo '&nbsp;';
 			    					   	}
 			    					   	else if ($key == 2) {
