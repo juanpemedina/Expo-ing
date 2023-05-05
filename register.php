@@ -59,7 +59,7 @@ else
 	}
 	else if ($tipou == "Profesor")
 	{
-		$result = mysqli_query($conn, "INSERT INTO R_Profesor(Nomina, Contrasenia, NombrePr, ApellidoPr) VALUES('$mail', '$pass', '$name', '$lastn')");
+		$resultP = mysqli_query($conn, "INSERT INTO R_Profesor(Nomina, Contrasenia, NombrePr, ApellidoPr) VALUES('$mail', '$pass', '$name', '$lastn')");
 	}
 	else if ($tipou == "Juez")
 	{
@@ -68,6 +68,9 @@ else
 	}
 	if ($result) {
 		header("Location: index.html");	
+	}
+	else if ($resultP) {
+		header("Location: select_Uf.php");	
 	}
 	else {
 		echo "Usuario No Creado";
