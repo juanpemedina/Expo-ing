@@ -84,6 +84,9 @@ if ( $key!=1 and $key!=2 and $key!=3 and $key!=4) {
         <td>
           <h3>Autorizacion</h3>
         </td>
+        <td>
+	  <h3>Calificacion</h3>	
+      	</td>
       </tr>
     </thead>
 
@@ -117,6 +120,7 @@ if ( $key!=1 and $key!=2 and $key!=3 and $key!=4) {
 			    					  	echo '<td>'. $row['Nivel'] . '</td>';
                                         				echo '<td>'. $row['NombrePy'] . '</td>';
                                         				echo '<td>';    echo ($row['Autorizacion'])?"SI":"NO"; echo'</td>';
+									echo '<td>'. $row['Calif_Final'] . '</td>';
 			                            		echo '<td width=150>';
 			    					   	echo '<a class="btn" href="detalles.php?id='.$row['Id_Proyecto'].'">Detalles</a>';
 			    					   	echo '&nbsp;';
