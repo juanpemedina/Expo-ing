@@ -19,6 +19,8 @@ $tipou = $_POST["tusuario"];
 $mail = $_POST["correo"];
 $pass = $_POST["password"];
 
+$_SESSION["User"] = $mail;
+
 $queryAl=mysqli_query($conn,"SELECT * FROM R_Alumno WHERE Matricula = '$mail'");
 $queryPr=mysqli_query($conn, "SELECT * FROM R_Profesor WHERE Nomina = '$mail'");
 $queryJu=mysqli_query($conn, "SELECT * FROM R_Juez WHERE Id_Juez = '$mail'");
