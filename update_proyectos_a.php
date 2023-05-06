@@ -84,7 +84,7 @@
 			Database::disconnect();
 			header("Location: proyectos_admin.php");
 		}
-		elseif ($valid && empty($calif)) {
+		else if ($valid && empty($calif)) {
 			$pdo = Database::connect();
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$sql = "UPDATE R_Proyecto  set Id_Proyecto =?, Nomina =?, Id_Area =?, Id_Uf =?, Id_Nivel =?, NombrePy =?, Descripcion =?, Multimedia =?, Autorizacion=? WHERE Id_Proyecto = ?";
