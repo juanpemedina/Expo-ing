@@ -22,6 +22,7 @@
 		$nivelError = null;
 		$nomiError = null;
 		$authError = null;
+		$califError = null;
 
 
 		// keep track post values
