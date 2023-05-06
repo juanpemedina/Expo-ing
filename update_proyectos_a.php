@@ -21,7 +21,6 @@
 		$ufError = null;
 		$nivelError = null;
 		$nomiError = null;
-		$califError = null;
 		$authError = null;
 
 
@@ -71,17 +70,25 @@
 		}
 		if ($calif>4 || $calif<0) {
 			$califError = 'Por favor ingrese una calificacion';
-			$valid = false;
 		}
 		
 
 		// update data
-		if ($valid) {
+		if ($valid && ($calif>4 || $calif<0)) {
 			$pdo = Database::connect();
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$sql = "UPDATE R_Proyecto  set Id_Proyecto =?, Nomina =?, Id_Area =?, Id_Uf =?, Id_Nivel =?, NombrePy =?, Descripcion =?, Multimedia =?, Calif_Final=?, Autorizacion=? WHERE Id_Proyecto = ?";
 			$q = $pdo->prepare($sql);
 			$q->execute(array($id, $nomi, $area, $uf, $nivel, $nomb, $desc, $mult, $calif, $auth,$id));
+			Database::disconnect();
+			header("Location: proyectos_admin.php");
+		}
+		elseif ($valid && empty($calif)) {
+			$pdo = Database::connect();
+			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$sql = "UPDATE R_Proyecto  set Id_Proyecto =?, Nomina =?, Id_Area =?, Id_Uf =?, Id_Nivel =?, NombrePy =?, Descripcion =?, Multimedia =?, Autorizacion=? WHERE Id_Proyecto = ?";
+			$q = $pdo->prepare($sql);
+			$q->execute(array($id, $nomi, $area, $uf, $nivel, $nomb, $desc, $mult, $auth,$id));
 			Database::disconnect();
 			header("Location: proyectos_admin.php");
 		}
