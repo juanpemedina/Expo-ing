@@ -46,13 +46,13 @@ if (isset($_POST['matri4'])) {
 
 		$proye = $_POST['proye'];
 		
-		
+		if (!empty($nomi) and !empty($uf)) {
 		$pdo = Database::connect();
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$sql1 = 'SELECT * FROM R_Profesor_Uf WHERE Nomina = "' . $nomi . '" AND Id_Uf = ' . $uf;
 			$q1 = $pdo->query($sql1);
 			$nq = $q1 -> rowCount();
-		
+		}
 		
 		// validate input
 		$valid = true;
