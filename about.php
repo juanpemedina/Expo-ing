@@ -64,21 +64,25 @@ $user = $_SESSION["Usuario"];
             if ($key == 1) {
             	echo '<a href="pagina_inicio_e.php" class="center">Pagina de Inicio</a>';
             	echo '<a href="registro.php" class="center">Registrar</a>';
-		echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
+		echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>';
+		echo '<a href="proyectos1.php" class="center">Proyectos</a>';
             }
             else if ($key == 2) {
             	echo '<a href="pagina_inicio_p.php" class="center">Pagina de Inicio</a>';
-		echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
+		echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>';
+		echo '<a href="proyectos1.php" class="center">Proyectos</a>';
             }
             else if ($key == 3) {
             	echo '<a href="pagina_inicio_j.php" class="center">Pagina de Inicio</a>';
-		    echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
+		echo '<a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>';
+		echo '<a href="proyectos1.php" class="center">Proyectos</a>';
             }
             else {
             	echo '<a href="pagina_inicio_a.php" class="center">Pagina de Inicio</a>';
+		echo '<a href="proyectos_admin.php" class="center">Proyectos</a>';
+		echo '<a href="asignar_rol_admin_e.php" class="center">Asignar Rol</a>';
             }
             
-            <a href="proyectos1.php" class="center">Proyectos</a>
             <a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
