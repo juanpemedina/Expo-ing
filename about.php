@@ -83,7 +83,7 @@ $user = $_SESSION["Usuario"];
 		echo '<a href="asignar_rol_admin_e.php" class="center">Asignar Rol</a>';
             }
             
-            <a href="logout.php" class="center">Cerrar Sesión</a>
+            echo '<a href="logout.php" class="center">Cerrar Sesión</a>
           </div>
 
           <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="left">&#9776; Menu</span>
