@@ -71,7 +71,7 @@
                         echo '<select name="project_id">';
                         echo '<option value="">Seleciona Proyecto</option>';
                         // Query to get the projects
-                        $sql_proyectos = 'SELECT * FROM R_Proyecto WHERE Id_Uf NOT IN (SELECT Id_Uf FROM R_Profesor_Uf WHERE Nomina = ?)';
+                        $sql_proyectos = 'SELECT * FROM R_Proyecto WHERE Autorizacion=1 AND Id_Uf NOT IN (SELECT Id_Uf FROM R_Profesor_Uf WHERE Nomina = ?)';
                         $q_proyectos = $pdo->prepare($sql_proyectos);
                         $q_proyectos->execute(array($row_juez['Matricula']));
                         while ($row_proyecto = $q_proyectos->fetch(PDO::FETCH_ASSOC)) {
