@@ -245,7 +245,7 @@ if ( $key!=1) {
 							   		$pdo = Database::connect();
 							   		$query = 'SELECT * FROM R_Profesor NATURAL JOIN R_Profesor_Uf NATURAL JOIN R_Unidad_Formacion';
 			 				   		foreach ($pdo->query($query) as $row) {
-		                        		if ($row['Id_Uf']==$uf)
+		                        		if ($row['Nomina']==$nomi)
 		                        			echo "<option selected value='" . $row['Nomina'] . "'>" . $row['NombrePr'] . $row['ApellidoPr'] . "</option>";
 		                        		else
 		                        			echo "<option value='" . $row['Nomina'] . "'>" . $row['NombrePr'] . $row['ApellidoPr'] . "</option>";
