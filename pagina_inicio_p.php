@@ -51,7 +51,7 @@ $key = $_SESSION["TipoUsuario"];
         </div>
         <!--CV Upload BUTTON-->
         <div class="w3-container w3-padding-16">
-          <a href="autorizar.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
+          <a href="mis_proyectos_j.php" class="w3-amber w3-hover-amber w3-button w3-round-small w3-hover-deep-orange w3-padding-large">
             <i data-feather="folder" style="vertical-align: -0.35em;"></i>
             <span class="w3-margin-left download-text">Mis Proyectos</span>
           </a>
@@ -66,7 +66,7 @@ $key = $_SESSION["TipoUsuario"];
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="pagina_inicio_p.php" class="center">Pagina de Inicio</a>
-            <a href="autorizar.php" class="center">Mis Proyectos</a>
+            <a href="mis_proyectos_j.php" class="center">Mis Proyectos</a>
             <a href="todosproyectos.php" class="center">Proyectos</a>
             <a href="about.php" class="center">About</a>
             <a href="logout.php" class="center">Cerrar Sesión</a>
